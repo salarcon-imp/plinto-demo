@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use './typography' as t;
+
+$type-scale: (
+  'display-1': (
+    family: t.$font-primary,
+    size: t.$fs-36,
+    weight: t.$fw-extralight,
+    letter-spacing: t.$ls-tight,
+    line-height: t.$lh-tight,
+  ),
+  'h1': (
+    family: t.$font-primary,
+    size: t.$fs-32,
+    weight: t.$fw-extralight,
+    letter-spacing: t.$ls-tight,
+    line-height: t.$lh-tight,
+  ),
+  'h2': (
+    family: t.$font-primary,
+    size: t.$fs-24,
+    weight: t.$fw-regular,
+    letter-spacing: t.$ls-snug,
+    line-height: t.$lh-base,
+  ),
+  'body': (
+    family: t.$font-primary,
+    size: t.$fs-16,
+    weight: t.$fw-light,
+    letter-spacing: t.$ls-normal,
+    line-height: t.$lh-copy,
+  ),
+  'label': (
+    family: t.$font-primary,
+    size: t.$fs-14,
+    weight: t.$fw-regular,
+    letter-spacing: t.$ls-normal,
+    line-height: 1,
+  ),
+  'mono': (
+    family: t.$font-mono,
+    size: t.$fs-12,
+    weight: t.$fw-regular,
+    letter-spacing: t.$ls-mono-px,
+    line-height: t.$lh-loose,
+  ),
+);
+
+@mixin apply($token) {
+  $style: map.get($type-scale, $token);
+
+  font-family: map.get($style, 'family');
+  font-size: map.get($style, 'size');
+  font-weight: map.get($style, 'weight');
+  letter-spacing: map.get($style, 'letter-spacing');
+  line-height: map.get($style, 'line-height');
+}

@@ -1,0 +1,25 @@
+@use '../tokens' as *;
+
+body {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top, rgba(107, 163, 200, 0.08), transparent 30%),
+    linear-gradient(180deg, #fbfaf7 0%, var(--color-bg-page) 28%, #efede8 100%);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(50, 75, 100, 0.28);
+  outline-offset: 3px;
+}

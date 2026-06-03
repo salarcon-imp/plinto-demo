@@ -1,0 +1,42 @@
+// ============================================================
+// PLINTO — Color Tokens
+// ============================================================
+
+$abyss: #0d0e11;
+$warm: #c8c3ba;
+
+$ink-blue: #324b64;
+$ink-blue-hi: #6ba3c8;
+
+$light-bone: #f5f5f3;
+$light-alabaster: #edecea;
+$light-dust: #e0ddd9;
+$light-silver: #8a8a8f;
+$light-slate: #5a5a5f;
+$light-ink: #15161a;
+
+$dark-ink: #15161a;
+$dark-ink-mid: #1e2028;
+$dark-ink-soft: #2a2b33;
+$dark-stone: #3a3a3d;
+$dark-mist: #a5a5a0;
+$dark-bone: #f5f5f3;
+
+$semantic-light: (
+  'bg-page': $light-bone,
+  'bg-surface': $light-alabaster,
+  'bg-elevated': $light-dust,
+  'text-primary': $light-ink,
+  'text-secondary': $light-slate,
+  'text-tertiary': $light-silver,
+  'text-constant': $abyss,
+  'border-subtle': $light-dust,
+  'border-default': $light-silver,
+  'accent': $ink-blue,
+  'accent-hi': $ink-blue-hi,
+  'warm': $warm,
+  'technical-surface': $dark-ink,
+  'technical-elevated': $dark-ink-mid,
+  'technical-border': rgba($dark-bone, 0.12),
+  'technical-text': $dark-bone,
+);

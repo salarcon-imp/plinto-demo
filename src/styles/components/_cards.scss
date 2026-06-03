@@ -1,0 +1,139 @@
+.artwork-card,
+.artist-card,
+.event-invitation-card {
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 20px 60px rgba(21, 22, 26, 0.06);
+  overflow: hidden;
+}
+
+.artwork-card__link {
+  display: block;
+  height: 100%;
+}
+
+.artwork-card__visual,
+.event-invitation-card__visual {
+  position: relative;
+  min-height: 220px;
+}
+
+.artwork-card__visual-glow {
+  position: absolute;
+  inset: auto 16px 16px auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  filter: blur(22px);
+}
+
+.artwork-card__body,
+.artist-card__body,
+.event-invitation-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+}
+
+.artwork-card__meta,
+.artwork-card__footer,
+.artist-card__specialties,
+.event-invitation-card__details,
+.event-invitation-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.artwork-card__artist,
+.event-invitation-card__label {
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.artwork-card__title,
+.artist-card__name,
+.event-invitation-card__title {
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.artwork-card__details,
+.artist-card__location,
+.artist-card__bio,
+.event-invitation-card__summary,
+.event-invitation-card__note {
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.artwork-card__price {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.artist-card {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 16px;
+  padding: 18px;
+}
+
+.artist-card__avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 24px;
+  background-color: var(--color-bg-elevated);
+}
+
+.artist-card__specialty {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 9999px;
+  background: rgba(50, 75, 100, 0.08);
+  color: var(--color-accent);
+  font-size: 12px;
+}
+
+.event-invitation-card__visual {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.event-invitation-card__details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: flex-start;
+}
+
+.event-invitation-card__details div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-invitation-card__actions .button {
+  flex: 1 1 0;
+}
+
+@media (max-width: 767px) {
+  .event-invitation-card__details {
+    grid-template-columns: 1fr;
+  }
+
+  .artist-card {
+    grid-template-columns: 1fr;
+  }
+}

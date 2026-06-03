@@ -1,0 +1,139 @@
+.artwork-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.artwork-profile-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.artwork-profile-hero__visual {
+  min-height: 360px;
+  border-radius: 28px;
+  box-shadow: 0 28px 80px rgba(21, 22, 26, 0.08);
+}
+
+.artwork-profile-hero__body,
+.artwork-profile-section,
+.artwork-profile-record-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.artwork-profile-hero__meta,
+.artwork-profile-section__head,
+.artwork-profile-custody__meta,
+.artwork-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.artwork-profile-hero__artist,
+.artwork-profile-section__eyebrow {
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.artwork-profile-hero__title {
+  font-size: clamp(34px, 9vw, 60px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.artwork-profile-hero__origin {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.artwork-profile-hero__spec,
+.artwork-profile-copy__text,
+.artwork-profile-custody__note,
+.artwork-profile-custody__meta {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.artwork-profile-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.artwork-profile-hero__tag {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 9999px;
+  background: rgba(50, 75, 100, 0.08);
+  color: var(--color-accent);
+  font-size: 12px;
+}
+
+.artwork-profile-copy__toggle,
+.artwork-profile-section__link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 14px;
+}
+
+.artwork-profile-record-preview {
+  padding: 20px;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.artwork-profile-record-preview .mono-data-block {
+  background: linear-gradient(180deg, var(--color-technical-surface), var(--color-technical-elevated));
+}
+
+.artwork-profile-custody {
+  display: grid;
+  gap: 12px;
+}
+
+.artwork-profile-custody__entry {
+  padding: 16px 18px;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.artwork-profile-custody__actor {
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+.artwork-profile-actions .button {
+  flex: 1 1 0;
+}
+
+.artwork-profile-actions__link {
+  flex: 1 1 0;
+}
+
+.artwork-profile-actions__link .button {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .artwork-profile-hero {
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+    display: grid;
+    align-items: start;
+  }
+}

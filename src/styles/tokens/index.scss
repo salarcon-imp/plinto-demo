@@ -1,0 +1,39 @@
+@use 'sass:map';
+@use './typography' as t;
+@use './colors' as c;
+@use './spacing' as s;
+
+@forward './typography';
+@forward './colors';
+@forward './spacing';
+@forward './mixins';
+
+:root {
+  --font-primary: #{t.$font-primary};
+  --font-mono: #{t.$font-mono};
+
+  --fs-36: #{t.$fs-36};
+  --fs-32: #{t.$fs-32};
+  --fs-24: #{t.$fs-24};
+  --fs-16: #{t.$fs-16};
+  --fs-14: #{t.$fs-14};
+  --fs-12: #{t.$fs-12};
+
+  --space-4: #{s.$space-4};
+  --space-8: #{s.$space-8};
+  --space-12: #{s.$space-12};
+  --space-16: #{s.$space-16};
+  --space-24: #{s.$space-24};
+  --space-32: #{s.$space-32};
+
+  --radius-sm: #{s.$radius-sm};
+  --radius-md: #{s.$radius-md};
+  --radius-lg: #{s.$radius-lg};
+  --radius-xl: #{s.$radius-xl};
+  --radius-2xl: #{s.$radius-2xl};
+  --radius-full: #{s.$radius-full};
+
+  @each $name, $value in c.$semantic-light {
+    --color-#{$name}: #{$value};
+  }
+}

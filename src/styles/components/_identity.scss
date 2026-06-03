@@ -1,0 +1,143 @@
+.identity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px 0 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text-primary);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.identity-badge--technical {
+  background: rgba(107, 163, 200, 0.16);
+  color: var(--color-technical-text);
+}
+
+.identity-badge--compact {
+  min-height: 30px;
+  font-size: 11px;
+}
+
+.identity-badge__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.mono-data-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(107, 163, 200, 0.08);
+}
+
+.mono-data-block__title,
+.record-accordion__eyebrow {
+  color: rgba(245, 245, 243, 0.68);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mono-data-block__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mono-data-block__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mono-data-block__label {
+  color: rgba(245, 245, 243, 0.62);
+  font-size: 12px;
+}
+
+.mono-data-block__value {
+  font-family: var(--font-mono);
+  color: rgba(107, 163, 200, 0.96);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+}
+
+.record-accordion {
+  border: 1px solid var(--color-technical-border);
+  border-radius: 28px;
+  background: linear-gradient(180deg, var(--color-technical-surface), var(--color-technical-elevated));
+  color: var(--color-technical-text);
+  overflow: hidden;
+}
+
+.record-accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.record-accordion__summary,
+.record-accordion__keeper,
+.record-accordion__custody-note {
+  color: rgba(245, 245, 243, 0.74);
+  line-height: 1.55;
+}
+
+.record-accordion__toggle {
+  font-size: 28px;
+  font-weight: 200;
+}
+
+.record-accordion__content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 20px 20px;
+}
+
+.record-accordion__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.record-accordion__custody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.record-accordion__custody-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.record-accordion__custody-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(245, 245, 243, 0.56);
+  font-size: 12px;
+}
+
+.record-accordion__custody-actor {
+  font-size: 14px;
+}

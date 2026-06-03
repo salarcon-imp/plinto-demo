@@ -1,0 +1,136 @@
+.identity-record-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.identity-record-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.identity-record-overview__eyebrow,
+.identity-record-card__eyebrow,
+.not-found-state__eyebrow {
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.identity-record-overview__headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.identity-record-overview__title,
+.not-found-state__title {
+  font-size: clamp(34px, 9vw, 58px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.identity-record-overview__description,
+.identity-record-card__body-copy,
+.not-found-state__description {
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+.identity-record-overview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.identity-record-overview__tag {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 9999px;
+  background: rgba(50, 75, 100, 0.08);
+  color: var(--color-accent);
+  font-size: 12px;
+}
+
+.identity-record-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.identity-record-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.identity-record-card--technical {
+  background: linear-gradient(180deg, var(--color-technical-surface), var(--color-technical-elevated));
+  border-color: var(--color-technical-border);
+}
+
+.identity-record-card--technical .identity-record-card__eyebrow,
+.identity-record-card--technical .identity-record-card__body-copy,
+.identity-record-card--technical .identity-record-card__link {
+  color: rgba(245, 245, 243, 0.78);
+}
+
+.identity-record-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.identity-record-card__link {
+  color: var(--color-accent);
+  font-size: 13px;
+}
+
+.not-found-state {
+  display: grid;
+  min-height: 70vh;
+  place-items: center;
+}
+
+.not-found-state__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(100%, 620px);
+  padding: 28px;
+  border: 1px solid rgba(21, 22, 26, 0.08);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 28px 90px rgba(21, 22, 26, 0.08);
+}
+
+.not-found-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (min-width: 1200px) {
+  .identity-record-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .identity-record-stack > .record-accordion {
+    grid-column: 1 / -1;
+  }
+}
