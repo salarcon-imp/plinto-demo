@@ -11,19 +11,12 @@ import {
 import { ArtistCard } from '../../components/cards/ArtistCard';
 import { NotFoundState } from '../../components/feedback/NotFoundState';
 import { IdentityBadge } from '../../components/identity/IdentityBadge';
-import { MonoDataBlock } from '../../components/identity/MonoDataBlock';
 import { RecordAccordion } from '../../components/identity/RecordAccordion';
-import { PageHeader } from '../../components/navigation/PageHeader';
-import { PrimaryButton } from '../../components/primitives/PrimaryButton';
-import { SecondaryButton } from '../../components/primitives/SecondaryButton';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import {
   formatArtworkDimensions,
-  formatLongDate,
-  formatTechnicalTimestamp,
   getArtistById,
   getArtworkBySlug,
-  getCategoriesByIds,
   getRecordByArtworkId,
 } from '../../utils/plinto';
 import { getVisualStyle } from '../../utils/visuals';
@@ -50,9 +43,7 @@ export function ArtworkProfilePage() {
 
   const artist = getArtistById(artwork.artistId);
   const record = getRecordByArtworkId(artwork.id);
-  const categories = getCategoriesByIds(artwork.categoryIds);
-  const previewCustody = record?.custody.slice(0, 3) ?? [];
-  const description = expanded ? artwork.summary : `${artwork.summary.slice(0, 115)}...`;
+  const description = expanded ? artwork.summary : `${artwork.summary.slice(0, 104)}...`;
 
   useEffect(() => {
     if (reducedMotion) {
@@ -60,20 +51,20 @@ export function ArtworkProfilePage() {
     }
 
     const context = gsap.context(() => {
-      gsap.from('.artwork-profile-hero > *', {
+      gsap.from('.artwork-profile-page__hero, .artwork-profile-page__panel > *, .artwork-profile-offer', {
         autoAlpha: 0,
-        y: 24,
+        y: 20,
         duration: MOTION_DURATION_LG,
         stagger: MOTION_STAGGER,
+        delay: MOTION_DELAY_SM,
         ease: MOTION_EASE,
       });
 
-      gsap.from('.artwork-profile-section', {
+      gsap.from('.artwork-profile-page__maker, .artwork-profile-page__record', {
         autoAlpha: 0,
-        y: 20,
+        y: 16,
         duration: MOTION_DURATION_MD,
-        stagger: MOTION_STAGGER,
-        delay: MOTION_DELAY_SM,
+        stagger: 0.08,
         ease: MOTION_EASE,
       });
     }, pageRef);
@@ -82,121 +73,81 @@ export function ArtworkProfilePage() {
   }, [artwork.id, reducedMotion]);
 
   return (
-    <section className="artwork-profile-page" ref={pageRef}>
-      <PageHeader actionLabel="Record" actionTo={record ? `/identity/${record.id}` : '/marketplace'} backTo="/marketplace" title="Artwork Profile" />
-
-      <div className="artwork-profile-hero">
-        <div className="artwork-profile-hero__visual" style={getVisualStyle(artwork.visual)} />
-
-        <div className="artwork-profile-hero__body">
-          <div className="artwork-profile-hero__meta">
-            <span className="artwork-profile-hero__artist">{artist?.name}</span>
-            {record ? (
-              <IdentityBadge
-                label={record.authenticityStatus === 'verified' ? 'Verified' : 'Identified'}
-              />
-            ) : null}
-          </div>
-
-          <h1 className="artwork-profile-hero__title">{artwork.title}</h1>
-          <p className="artwork-profile-hero__origin">
-            {artwork.originCountry}, {artwork.year}
-          </p>
-          <p className="artwork-profile-hero__spec">
-            {artwork.medium} on {artwork.support} |{' '}
-            {formatArtworkDimensions(
-              artwork.dimensionsCm.width,
-              artwork.dimensionsCm.height,
-              artwork.dimensionsCm.depth,
-            )}{' '}
-            | {artwork.edition}
-          </p>
-
-          <div className="artwork-profile-hero__tags">
-            {categories.map((category) => (
-              <span className="artwork-profile-hero__tag" key={category.id}>
-                {category.label}
-              </span>
-            ))}
+    <section className="artwork-profile-page artwork-profile-page--dark" ref={pageRef}>
+      <div className="artwork-profile-page__hero">
+        <div className="artwork-profile-page__hero-actions">
+          <Link aria-label="Back to marketplace" className="artwork-profile-page__hero-button" to="/marketplace">
+            ‹
+          </Link>
+          <div className="artwork-profile-page__hero-tools">
+            <Link
+              aria-label="Open identity record"
+              className="artwork-profile-page__hero-button"
+              to={record ? `/identity/${record.id}` : '/marketplace'}
+            >
+              ↗
+            </Link>
+            <button aria-label="Favorite artwork" className="artwork-profile-page__hero-button" type="button">
+              ♡
+            </button>
           </div>
         </div>
+
+        <div className="artwork-profile-page__hero-visual" style={getVisualStyle(artwork.visual)} />
       </div>
 
-      <section className="artwork-profile-section artwork-profile-copy">
-        <p className="artwork-profile-section__eyebrow">Overview</p>
-        <p className="artwork-profile-copy__text">{description}</p>
-        <button
-          className="artwork-profile-copy__toggle"
-          onClick={() => setExpanded((current) => !current)}
-          type="button"
-        >
-          {expanded ? 'Read less' : 'Read more'}
-        </button>
-      </section>
-
-      {artist ? (
-        <section className="artwork-profile-section">
-          <div className="artwork-profile-section__head">
-            <p className="artwork-profile-section__eyebrow">About the Maker</p>
+      <div className="artwork-profile-page__panel">
+        <div className="artwork-profile-page__title-row">
+          <div>
+            <p className="artwork-profile-page__artist">{artist?.name.toUpperCase()}</p>
+            <h1 className="artwork-profile-page__title">{artwork.title}</h1>
+            <p className="artwork-profile-page__location">
+              {artwork.originCountry}, {artwork.year}
+            </p>
+            <p className="artwork-profile-page__spec">
+              {artwork.medium} on {artwork.support.toLowerCase()} &nbsp;|&nbsp;{' '}
+              {formatArtworkDimensions(
+                artwork.dimensionsCm.width,
+                artwork.dimensionsCm.height,
+                artwork.dimensionsCm.depth,
+              )}
+            </p>
           </div>
-          <ArtistCard artist={artist} />
-        </section>
-      ) : null}
 
-      {record ? (
-        <>
-          <section className="artwork-profile-section artwork-profile-record-preview">
-            <div className="artwork-profile-section__head">
-              <p className="artwork-profile-section__eyebrow">The Record</p>
-              <Link className="artwork-profile-section__link" to={`/identity/${record.id}`}>
-                Open full identity record
-              </Link>
-            </div>
+          {record ? <IdentityBadge label="Verified" tone="technical" /> : null}
+        </div>
 
-            <MonoDataBlock
-              title="Preview"
-              rows={[
-                { label: 'Maker', value: artist?.name ?? 'Unknown' },
-                { label: 'Current Keeper', value: record.currentKeeper },
-                { label: 'Plinted Date', value: formatLongDate(record.mintedAt) },
-                { label: 'Timestamp', value: formatTechnicalTimestamp(record.mintedAt) },
-              ]}
-            />
-          </section>
+        <div className="artwork-profile-page__description">
+          <p>{description}</p>
+          <button onClick={() => setExpanded((current) => !current)} type="button">
+            {expanded ? 'READ LESS →' : 'READ MORE →'}
+          </button>
+        </div>
 
-          <section className="artwork-profile-section">
-            <RecordAccordion record={record} />
-          </section>
-
-          <section className="artwork-profile-section">
-            <div className="artwork-profile-section__head">
-              <p className="artwork-profile-section__eyebrow">Chain of Custody</p>
-            </div>
-            <div className="artwork-profile-custody">
-              {previewCustody.map((entry) => (
-                <article className="artwork-profile-custody__entry" key={entry.id}>
-                  <div className="artwork-profile-custody__meta">
-                    <span>{entry.date}</span>
-                    <span>{entry.location}</span>
-                  </div>
-                  <p className="artwork-profile-custody__actor">
-                    {entry.actor} · {entry.action}
-                  </p>
-                  <p className="artwork-profile-custody__note">{entry.note}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        </>
-      ) : null}
-
-      <div className="artwork-profile-actions">
-        <PrimaryButton>Inquire</PrimaryButton>
-        {record ? (
-          <Link className="artwork-profile-actions__link" to={`/identity/${record.id}`}>
-            <SecondaryButton>Open Identity Record</SecondaryButton>
-          </Link>
+        {artist ? (
+          <div className="artwork-profile-page__maker">
+            <p className="artwork-profile-page__section-label">ABOUT THE MAKER</p>
+            <ArtistCard artist={artist} />
+          </div>
         ) : null}
+
+        {record ? (
+          <div className="artwork-profile-page__record">
+            <RecordAccordion record={record} />
+          </div>
+        ) : null}
+      </div>
+
+      <div className="artwork-profile-offer">
+        <div>
+          <p className="artwork-profile-offer__label">CURRENT OFFER</p>
+          <p className="artwork-profile-offer__price">
+            ${artwork.priceUsd?.toLocaleString() ?? '2,400'}
+          </p>
+        </div>
+        <button className="artwork-profile-offer__button" type="button">
+          INQUIRE
+        </button>
       </div>
     </section>
   );

@@ -1,10 +1,10 @@
 .artwork-card,
 .artist-card,
 .event-invitation-card {
-  border: 1px solid rgba(21, 22, 26, 0.08);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 20px 60px rgba(21, 22, 26, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  background: #1a1b21;
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -16,17 +16,7 @@
 .artwork-card__visual,
 .event-invitation-card__visual {
   position: relative;
-  min-height: 220px;
-}
-
-.artwork-card__visual-glow {
-  position: absolute;
-  inset: auto 16px 16px auto;
-  width: 64px;
-  height: 64px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.14);
-  filter: blur(22px);
+  min-height: 168px;
 }
 
 .artwork-card__body,
@@ -34,8 +24,8 @@
 .event-invitation-card__body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 18px;
+  gap: 6px;
+  padding: 10px 12px 12px;
 }
 
 .artwork-card__meta,
@@ -52,7 +42,7 @@
 
 .artwork-card__artist,
 .event-invitation-card__label {
-  color: var(--color-text-tertiary);
+  color: rgba(245, 245, 243, 0.68);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -61,9 +51,14 @@
 .artwork-card__title,
 .artist-card__name,
 .event-invitation-card__title {
-  font-size: 24px;
+  color: #f2f1ee;
+  font-size: 18px;
   font-weight: 300;
   letter-spacing: -0.03em;
+}
+
+.artwork-card__title {
+  font-style: italic;
 }
 
 .artwork-card__details,
@@ -71,27 +66,39 @@
 .artist-card__bio,
 .event-invitation-card__summary,
 .event-invitation-card__note {
-  color: var(--color-text-secondary);
-  line-height: 1.55;
+  color: rgba(245, 245, 243, 0.72);
+  line-height: 1.35;
 }
 
-.artwork-card__price {
-  color: var(--color-accent);
-  font-weight: 500;
+.artwork-card__footer {
+  justify-content: flex-start;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #7ca4de;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .artist-card {
   display: grid;
-  grid-template-columns: 84px 1fr;
-  gap: 16px;
-  padding: 18px;
+  grid-template-columns: 46px 1fr 24px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 8px;
 }
 
 .artist-card__avatar {
-  width: 84px;
-  height: 84px;
-  border-radius: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
   background-color: var(--color-bg-elevated);
+}
+
+.artist-card__body {
+  gap: 2px;
+  padding: 0;
 }
 
 .artist-card__specialty {
@@ -103,6 +110,19 @@
   background: rgba(50, 75, 100, 0.08);
   color: var(--color-accent);
   font-size: 12px;
+}
+
+.artist-card__specialties,
+.artist-card__bio,
+.artist-card__location {
+  display: none;
+}
+
+.artist-card::after {
+  content: '→';
+  color: #7ca4de;
+  font-size: 24px;
+  font-weight: 300;
 }
 
 .event-invitation-card__visual {

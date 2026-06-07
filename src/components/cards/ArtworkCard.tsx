@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Artwork } from '../../types/artwork';
 import { getVisualStyle } from '../../utils/visuals';
-import { IdentityBadge } from '../identity/IdentityBadge';
-import { StatusBadge } from '../feedback/StatusBadge';
 
 type ArtworkCardProps = {
   artwork: Artwork;
@@ -11,35 +9,27 @@ type ArtworkCardProps = {
   badgeLabel?: string;
 };
 
-export function ArtworkCard({
-  artwork,
-  artistName,
-  to,
-  badgeLabel = 'Identified',
-}: ArtworkCardProps) {
+function getMarketplaceState(artwork: Artwork) {
+  if (artwork.availability === 'in-collection') {
+    return 'In Collection';
+  }
+
+  return `${artwork.identityRecordId ? 'Verified' : 'Identified'}  |  ${
+    artwork.availability === 'reserved' ? 'Reserved' : 'Available'
+  }`;
+}
+
+export function ArtworkCard({ artwork, artistName, to }: ArtworkCardProps) {
   const content = (
     <article className="artwork-card">
-      <div className="artwork-card__visual" style={getVisualStyle(artwork.visual)}>
-        <div className="artwork-card__visual-glow" />
-      </div>
+      <div className="artwork-card__visual" style={getVisualStyle(artwork.visual)} />
       <div className="artwork-card__body">
-        <div className="artwork-card__meta">
-          <span className="artwork-card__artist">{artistName}</span>
-          {artwork.identityRecordId ? <IdentityBadge label={badgeLabel} compact /> : null}
-        </div>
+        <span className="artwork-card__artist">{artistName}</span>
         <h3 className="artwork-card__title">{artwork.title}</h3>
         <p className="artwork-card__details">
-          {artwork.medium} on {artwork.support}, {artwork.year}
+          {artwork.medium} on {artwork.support.toLowerCase()}, {artwork.year}
         </p>
-        <div className="artwork-card__footer">
-          <StatusBadge
-            label={artwork.availability.replace('-', ' ')}
-            tone={artwork.availability === 'available' ? 'success' : 'default'}
-          />
-          {artwork.priceUsd ? (
-            <span className="artwork-card__price">${artwork.priceUsd.toLocaleString()}</span>
-          ) : null}
-        </div>
+        <div className="artwork-card__footer">{getMarketplaceState(artwork)}</div>
       </div>
     </article>
   );

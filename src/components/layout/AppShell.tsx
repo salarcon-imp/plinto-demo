@@ -4,7 +4,9 @@ import { MobileFrame } from './MobileFrame';
 export function AppShell({ children }: PropsWithChildren) {
   return (
     <div className="app-shell">
-      <MobileFrame>{children}</MobileFrame>
+      <div className="app-shell__device">
+        <MobileFrame>{children}</MobileFrame>
+      </div>
     </div>
   );
 }

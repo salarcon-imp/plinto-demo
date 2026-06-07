@@ -1,5 +1,3 @@
-import BrandMark from '../../assets/logos/BrandMark.svg';
-
 type IdentityBadgeProps = {
   label?: string;
   tone?: 'light' | 'technical';
@@ -15,7 +13,6 @@ export function IdentityBadge({
     <span
       className={`identity-badge identity-badge--${tone} ${compact ? 'identity-badge--compact' : ''}`.trim()}
     >
-      <img alt="" className="identity-badge__icon" src={BrandMark} />
       <span>{label}</span>
     </span>
   );

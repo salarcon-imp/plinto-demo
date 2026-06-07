@@ -19,10 +19,10 @@ export function RecordAccordion({ record }: RecordAccordionProps) {
       >
         <div>
           <p className="record-accordion__eyebrow">The Record</p>
-          <p className="record-accordion__summary">{record.provenanceSummary}</p>
+          <p className="record-accordion__summary">Certificate ID {record.certificateId}</p>
         </div>
         <span className="record-accordion__toggle" aria-hidden="true">
-          {open ? '−' : '+'}
+          {open ? '⌄' : '›'}
         </span>
       </button>
 
@@ -36,20 +36,10 @@ export function RecordAccordion({ record }: RecordAccordionProps) {
           <MonoDataBlock
             title="Registry"
             rows={[
-              { label: 'Record ID', value: record.recordId },
+              { label: 'Certificate ID', value: record.certificateId },
               { label: 'Hash', value: record.hash },
-              { label: 'Block', value: `#${record.blockNumber}` },
-              { label: 'Minted', value: record.mintedAt },
-            ]}
-          />
-
-          <MonoDataBlock
-            title="Technical"
-            rows={[
-              { label: 'Network', value: record.network },
-              { label: 'Condition', value: record.metadata.condition },
-              { label: 'Surface', value: record.metadata.surface },
-              { label: 'Geo', value: record.metadata.geostamp },
+              { label: 'Timestamp', value: record.mintedAt },
+              { label: 'Metadata', value: record.metadata.captureMethod },
             ]}
           />
 

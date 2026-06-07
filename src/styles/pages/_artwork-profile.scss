@@ -1,139 +1,169 @@
 .artwork-profile-page {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
+  min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
+  padding-bottom: 116px;
+  background: #17181d;
+  color: #f5f5f3;
 }
 
-.artwork-profile-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.artwork-profile-page__hero {
+  position: relative;
 }
 
-.artwork-profile-hero__visual {
-  min-height: 360px;
-  border-radius: 28px;
-  box-shadow: 0 28px 80px rgba(21, 22, 26, 0.08);
-}
-
-.artwork-profile-hero__body,
-.artwork-profile-section,
-.artwork-profile-record-preview {
+.artwork-profile-page__hero-actions {
+  position: absolute;
+  inset: 12px 14px auto;
+  z-index: 2;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.artwork-profile-hero__meta,
-.artwork-profile-section__head,
-.artwork-profile-custody__meta,
-.artwork-profile-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
-.artwork-profile-hero__artist,
-.artwork-profile-section__eyebrow {
-  color: var(--color-text-tertiary);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.artwork-profile-hero__title {
-  font-size: clamp(34px, 9vw, 60px);
-  font-weight: 300;
-  line-height: 0.98;
-  letter-spacing: -0.05em;
-}
-
-.artwork-profile-hero__origin {
-  font-size: 20px;
-  font-weight: 300;
-}
-
-.artwork-profile-hero__spec,
-.artwork-profile-copy__text,
-.artwork-profile-custody__note,
-.artwork-profile-custody__meta {
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-
-.artwork-profile-hero__tags {
+.artwork-profile-page__hero-tools {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
-.artwork-profile-hero__tag {
+.artwork-profile-page__hero-button {
   display: inline-flex;
-  min-height: 30px;
+  width: 34px;
+  height: 34px;
   align-items: center;
-  padding: 0 12px;
-  border-radius: 9999px;
-  background: rgba(50, 75, 100, 0.08);
-  color: var(--color-accent);
-  font-size: 12px;
-}
-
-.artwork-profile-copy__toggle,
-.artwork-profile-section__link {
-  padding: 0;
+  justify-content: center;
   border: 0;
   background: transparent;
-  color: var(--color-accent);
+  color: #f3f0eb;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.artwork-profile-page__hero-visual {
+  min-height: 462px;
+  background-position: center;
+}
+
+.artwork-profile-page__panel {
+  margin-top: -2px;
+  padding: 16px 16px 0;
+  background: #17181d;
+}
+
+.artwork-profile-page__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.artwork-profile-page__artist,
+.artwork-profile-page__section-label,
+.artwork-profile-offer__label {
+  color: rgba(245, 245, 243, 0.6);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.artwork-profile-page__title {
+  margin-top: 4px;
+  font-size: 30px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.05em;
+}
+
+.artwork-profile-page__location {
+  margin-top: 4px;
+  color: rgba(245, 245, 243, 0.72);
+  font-size: 16px;
+}
+
+.artwork-profile-page__spec {
+  margin-top: 8px;
+  color: rgba(245, 245, 243, 0.62);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.artwork-profile-page__description {
+  padding: 12px 0 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.artwork-profile-page__description p {
+  color: rgba(245, 245, 243, 0.88);
+  font-size: 17px;
+  line-height: 1.42;
+}
+
+.artwork-profile-page__description button {
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: #729bd1;
   font-size: 14px;
+  letter-spacing: 0.06em;
 }
 
-.artwork-profile-record-preview {
-  padding: 20px;
-  border: 1px solid rgba(21, 22, 26, 0.08);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.72);
+.artwork-profile-page__maker,
+.artwork-profile-page__record {
+  margin-top: 16px;
 }
 
-.artwork-profile-record-preview .mono-data-block {
-  background: linear-gradient(180deg, var(--color-technical-surface), var(--color-technical-elevated));
+.artwork-profile-page__maker .artist-card {
+  margin-top: 10px;
 }
 
-.artwork-profile-custody {
-  display: grid;
-  gap: 12px;
+.artwork-profile-offer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding:
+    12px
+    16px
+    calc(12px + env(safe-area-inset-bottom));
+  background: #1a1b21;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.artwork-profile-custody__entry {
-  padding: 16px 18px;
-  border: 1px solid rgba(21, 22, 26, 0.08);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.artwork-profile-custody__actor {
+.artwork-profile-offer__price {
   margin-top: 6px;
-  font-size: 15px;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.05em;
 }
 
-.artwork-profile-actions .button {
-  flex: 1 1 0;
+.artwork-profile-offer__button {
+  min-width: 122px;
+  min-height: 52px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #729bd1;
+  color: #121318;
+  font-size: 17px;
+  font-weight: 500;
 }
 
-.artwork-profile-actions__link {
-  flex: 1 1 0;
+@media (min-width: 768px) {
+  .artwork-profile-page__hero-visual {
+    min-height: 520px;
+  }
 }
 
-.artwork-profile-actions__link .button {
-  width: 100%;
-}
-
-@media (min-width: 1200px) {
-  .artwork-profile-hero {
-    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-    display: grid;
-    align-items: start;
+@media (min-width: 1024px) {
+  .artwork-profile-offer {
+    left: 50%;
+    right: auto;
+    width: 430px;
+    transform: translateX(-50%);
+    border-radius: 0 0 38px 38px;
   }
 }
