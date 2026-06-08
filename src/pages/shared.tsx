@@ -90,7 +90,7 @@ export function PlaceholderPage({
 
       <BottomActionBar
         items={[
-          { label: 'Splash', to: '/splash' },
+          { label: 'Login', to: '/login' },
           { label: 'Market', to: '/marketplace' },
           { label: 'Scan', to: '/scan' },
           { label: 'Profile', to: '/profile/collector-01' },

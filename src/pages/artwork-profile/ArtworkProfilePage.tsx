@@ -10,7 +10,6 @@ import {
 } from '../../animations/presets/motion';
 import { ArtistCard } from '../../components/cards/ArtistCard';
 import { NotFoundState } from '../../components/feedback/NotFoundState';
-import { IdentityBadge } from '../../components/identity/IdentityBadge';
 import { RecordAccordion } from '../../components/identity/RecordAccordion';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import {
@@ -20,6 +19,7 @@ import {
   getRecordByArtworkId,
 } from '../../utils/plinto';
 import { getVisualStyle } from '../../utils/visuals';
+import VerifiedPlinto from '../../assets/ui/verified-plinto.png';
 
 export function ArtworkProfilePage() {
   const { artworkId } = useParams();
@@ -74,25 +74,25 @@ export function ArtworkProfilePage() {
 
   return (
     <section className="artwork-profile-page artwork-profile-page--dark" ref={pageRef}>
-      <div className="artwork-profile-page__hero">
-        <div className="artwork-profile-page__hero-actions">
-          <Link aria-label="Back to marketplace" className="artwork-profile-page__hero-button" to="/marketplace">
-            ‹
+      <div className="artwork-profile-page__hero-actions">
+        <Link aria-label="Back to marketplace" className="artwork-profile-page__hero-button" to="/marketplace">
+          ‹
+        </Link>
+        <div className="artwork-profile-page__hero-tools">
+          <Link
+            aria-label="Open identity record"
+            className="artwork-profile-page__hero-button"
+            to={record ? `/identity/${record.id}` : '/marketplace'}
+          >
+            ↗
           </Link>
-          <div className="artwork-profile-page__hero-tools">
-            <Link
-              aria-label="Open identity record"
-              className="artwork-profile-page__hero-button"
-              to={record ? `/identity/${record.id}` : '/marketplace'}
-            >
-              ↗
-            </Link>
-            <button aria-label="Favorite artwork" className="artwork-profile-page__hero-button" type="button">
-              ♡
-            </button>
-          </div>
+          <button aria-label="Favorite artwork" className="artwork-profile-page__hero-button" type="button">
+            ♡
+          </button>
         </div>
+      </div>
 
+      <div className="artwork-profile-page__hero">
         <div className="artwork-profile-page__hero-visual" style={getVisualStyle(artwork.visual)} />
       </div>
 
@@ -114,7 +114,11 @@ export function ArtworkProfilePage() {
             </p>
           </div>
 
-          {record ? <IdentityBadge label="Verified" tone="technical" /> : null}
+          {record ? (
+            <span className="artwork-profile-page__verified-mark">
+              <img alt="Verified Plinto" src={VerifiedPlinto} />
+            </span>
+          ) : null}
         </div>
 
         <div className="artwork-profile-page__description">

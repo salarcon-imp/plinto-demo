@@ -1,9 +1,7 @@
 import type { DemoRoute } from '../types/navigation';
 
 export const demoRoutes: DemoRoute[] = [
-  { title: 'Splash', path: '/splash', description: 'Brand entry point' },
-  { title: 'Onboarding', path: '/onboarding', description: 'Introductory flow' },
-  { title: 'Login', path: '/login', description: 'Email access shell' },
+  { title: 'Login', path: '/login', description: 'Access entry point' },
   { title: 'Invitation', path: '/invitation', description: 'Event reservation state' },
   { title: 'Marketplace', path: '/marketplace', description: 'Artwork discovery shell' },
   {

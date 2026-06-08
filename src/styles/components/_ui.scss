@@ -35,13 +35,14 @@
   align-items: center;
   justify-content: center;
   min-height: 40px;
-  padding: 0 18px;
+  padding: 0 16px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.02);
   color: rgba(245, 245, 243, 0.88);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .category-chip--active {

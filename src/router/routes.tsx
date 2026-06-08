@@ -1,13 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { App } from '../app/App';
 import { ArtworkProfilePage } from '../pages/artwork-profile/ArtworkProfilePage';
 import { IdentityRecordPage } from '../pages/identity-record/IdentityRecordPage';
 import { InvitationPage } from '../pages/invitation/InvitationPage';
 import { LoginPage } from '../pages/login/LoginPage';
 import { MarketplacePage } from '../pages/marketplace/MarketplacePage';
-import { OnboardingPage } from '../pages/onboarding/OnboardingPage';
 import { ScanPiecePage } from '../pages/scan-piece/ScanPiecePage';
-import { SplashPage } from '../pages/splash/SplashPage';
 import { UserProfilePage } from '../pages/user-profile/UserProfilePage';
 import { WorkFoundPage } from '../pages/work-found/WorkFoundPage';
 
@@ -18,15 +16,15 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <SplashPage />,
+        element: <Navigate replace to="/login" />,
       },
       {
         path: 'splash',
-        element: <SplashPage />,
+        element: <Navigate replace to="/login" />,
       },
       {
         path: 'onboarding',
-        element: <OnboardingPage />,
+        element: <Navigate replace to="/login" />,
       },
       {
         path: 'login',

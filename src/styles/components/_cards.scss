@@ -24,8 +24,8 @@
 .event-invitation-card__body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 10px 12px 12px;
+  gap: 5px;
+  padding: 9px 10px 11px;
 }
 
 .artwork-card__meta,
@@ -66,15 +66,16 @@
 .artist-card__bio,
 .event-invitation-card__summary,
 .event-invitation-card__note {
-  color: rgba(245, 245, 243, 0.72);
+  color: #c8c3ba;
+  font-size: 13px;
   line-height: 1.35;
 }
 
 .artwork-card__footer {
   justify-content: flex-start;
-  padding-top: 8px;
+  padding-top: 7px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: #7ca4de;
+  color: #c8c3ba;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;

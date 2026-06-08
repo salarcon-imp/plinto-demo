@@ -1,6 +1,6 @@
 .marketplace-page {
   min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
-  padding: 14px 16px 104px;
+  padding: 14px 14px 104px;
   background: #17181d;
   color: #f5f5f3;
 }
@@ -21,23 +21,22 @@
 
 .marketplace-page__utility {
   display: inline-flex;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: #f2f0eb;
+  overflow: hidden;
 }
 
 .marketplace-page__utility img {
-  width: 22px;
-  height: 22px;
+  width: 46px;
+  height: 46px;
 }
 
 .marketplace-page__filters {
   display: flex;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 8px;
+  margin-bottom: 16px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -54,12 +53,12 @@
 
 .marketplace-masonry {
   column-count: 2;
-  column-gap: 12px;
+  column-gap: 10px;
 }
 
 .marketplace-masonry__item {
   break-inside: avoid;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .marketplace-masonry .artwork-card__visual {
@@ -81,7 +80,7 @@
 
   .marketplace-masonry {
     column-count: 3;
-    column-gap: 14px;
+    column-gap: 12px;
   }
 }
 

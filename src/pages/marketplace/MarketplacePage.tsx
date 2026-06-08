@@ -7,7 +7,7 @@ import {
   MOTION_DURATION_SM,
   MOTION_EASE,
 } from '../../animations/presets/motion';
-import BrandMark from '../../assets/logos/BrandMark.svg';
+import Frame553 from '../../assets/ui/frame-553.png';
 import { ArtworkCard } from '../../components/cards/ArtworkCard';
 import { BottomActionBar } from '../../components/navigation/BottomActionBar';
 import { CategoryChip } from '../../components/primitives/CategoryChip';
@@ -113,7 +113,7 @@ export function MarketplacePage() {
       <header className="marketplace-page__head">
         <h1 className="marketplace-page__title">Marketplace</h1>
         <Link aria-label="Open scan experience" className="marketplace-page__utility" to="/scan">
-          <img alt="" src={BrandMark} />
+          <img alt="" src={Frame553} />
         </Link>
       </header>
 
