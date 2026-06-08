@@ -7,16 +7,20 @@ import {
   MOTION_OFFSET_Y,
   MOTION_STAGGER,
 } from '../../animations/presets/motion';
-import WordMarkBone from '../../assets/logos/WordMark-Bone.svg';
-import WhitePlinthMobile from '../../assets/ui/white-plinth-mobile.png';
+import WordMarkBone from '../../assets/logos/WordMark-Black.svg';
+//import WhitePlinthMobile from '../../assets/ui/white-plinth-mobile.png';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+// ICONOS
+import { Mail, ArrowRight, Loader2, MoveRight } from 'lucide-react';
 
 type LoginState = 'idle' | 'loading' | 'error' | 'success';
 
 export function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [status, setStatus] = useState<LoginState>('idle');
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  
   const navigate = useNavigate();
   const reducedMotion = useReducedMotion();
   const pageRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +31,7 @@ export function LoginPage() {
     }
 
     const context = gsap.context(() => {
-      gsap.from('.login-stage__brand, .login-stage__pedestal, .login-panel > *', {
+      gsap.from('.login-stage__brand, .login-stage__pedestal, .toggle-arrow', {
         autoAlpha: 0,
         y: MOTION_OFFSET_Y,
         duration: MOTION_DURATION_MD,
@@ -40,12 +44,13 @@ export function LoginPage() {
   }, [reducedMotion]);
 
   const handleLogin = () => {
-    if (!username.trim() || !password.trim()) {
+    if (!email.trim()) {
       setStatus('error');
       return;
     }
 
     setStatus('loading');
+    setIsPanelOpen(false);
 
     window.setTimeout(() => {
       setStatus('success');
@@ -56,92 +61,183 @@ export function LoginPage() {
     }, 850);
   };
 
-  const helperText =
-    status === 'error'
-      ? 'Enter both username and password to continue.'
-      : status === 'loading'
-        ? 'Preparing your access route...'
-        : status === 'success'
-          ? 'Access confirmed. Entering marketplace...'
-          : '';
-
   return (
-    <section className="login-stage" ref={pageRef}>
+    <section className="login-stage" ref={pageRef} style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+      {/* Giro del spinner */}
+      <style>
+        {`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+
       <div className="login-stage__veil" />
       <div className="login-stage__beam" />
 
       <div className="login-stage__scene">
         <img alt="Plinto" className="login-stage__brand" src={WordMarkBone} />
-        <div className="login-stage__pedestal" aria-hidden="true">
-          <img alt="" className="login-stage__pedestal-image" src={WhitePlinthMobile} />
-        </div>
 
-        <div className={`login-panel login-panel--${status}`.trim()}>
-          <div className="login-panel__copy">
-            <h1 className="login-panel__title">Welcome Back</h1>
-            <p className="login-panel__description">
-              Enter your username and password to log into your account
-            </p>
+        {/* Botón Flotante: Flecha hacia arriba o Spinner de carga */}
+        {!isPanelOpen && (
+          <button 
+            className="toggle-arrow"
+            onClick={() => {
+              // Solo permite abrir el panel si no está en proceso de carga
+              if (status !== 'loading' && status !== 'success') {
+                setIsPanelOpen(true);
+              }
+            }}
+            style={{
+              position: 'absolute',
+              bottom: '40px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'white',
+              border: 'none',
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              cursor: (status === 'loading' || status === 'success') ? 'default' : 'pointer',
+              zIndex: 10
+            }}
+          >
+            {(status === 'loading' || status === 'success') ? (
+              // Ícono de carga de Lucide con animación
+              <Loader2 size={24} color="black" style={{ animation: 'spin 1s linear infinite' }} />
+            ) : (
+              // Ícono de flecha hacia arriba
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 19V5M5 12l7-7 7 7"/>
+              </svg>
+            )}
+          </button>
+        )}
+
+        {/* Panel Centrado Horizontalmente */}
+        <div 
+          style={{
+            position: 'absolute',
+            width: '361px',
+            height: '281px',
+            bottom: isPanelOpen ? '20px' : '-350px', 
+            left: '50%', // Centrado 
+            transform: 'translateX(-50%)', // Compensación del centrado
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '40px',
+            opacity: 1,
+            borderRadius: '32px',
+            padding: '24px 20px',
+            backgroundColor: '#15161A',
+            boxShadow: '0 -10px 40px rgba(0,0,0,0.1)',
+            transition: 'bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1)',
+            zIndex: 20,
+            boxSizing: 'border-box'
+          }}
+        >
+          {/* Encabezado del panel */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <h2 
+              style={{ 
+                margin: 0, 
+                color: '#FFF', 
+                fontFamily: '"DM Sans", sans-serif',
+                fontWeight: 200,
+                fontStyle: 'normal',
+                fontSize: '24px',
+                lineHeight: '100%',
+                letterSpacing: '-0.04em'
+              }}
+            >
+              Log in with the email address you registered with
+            </h2>
           </div>
 
-          <label className="login-panel__field">
-            <span className="login-panel__field-icon" aria-hidden="true">
-              ○
-            </span>
-            <input
-              autoComplete="username"
-              className="login-panel__input"
-              onChange={(event) => {
-                setUsername(event.target.value);
-                if (status !== 'idle') {
-                  setStatus('idle');
-                }
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
+            
+            {/* Contenedor del Campo de Email con Ícono */}
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '321px',
+                height: '60px',
+                gap: '10px',
+                opacity: 1,
+                borderRadius: '99px',
+                padding: '20px 16px',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: status === 'error' ? 'red' : '#e0e0e0',
+                boxSizing: 'border-box',
+                color: '#FFF' // Controla el color del ícono y del input
               }}
-              placeholder="Username"
-              type="text"
-              value={username}
-            />
-          </label>
+            >
+              <Mail size={20} color="currentColor" />
+              
+              <input
+                autoComplete="email"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (status !== 'idle') setStatus('idle');
+                }}
+                placeholder="Email Address"
+                type="email"
+                value={email}
+                style={{
+                  flex: 1,
+                  background: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  fontFamily: '"DM Sans", sans-serif',
+                  fontWeight: 400,
+                  fontStyle: 'normal',
+                  fontSize: '16px',
+                  lineHeight: '120%',
+                  letterSpacing: '0',
+                  textAlign: 'left',
+                  color: 'inherit'
+                }}
+              />
+            </div>
 
-          <label className="login-panel__field">
-            <span className="login-panel__field-icon" aria-hidden="true">
-              □
-            </span>
-            <input
-              autoComplete="current-password"
-              className="login-panel__input"
-              onChange={(event) => {
-                setPassword(event.target.value);
-                if (status !== 'idle') {
-                  setStatus('idle');
-                }
+            {/* Botón de Entrar con nueva tipografía */}
+            <button 
+              onClick={handleLogin} 
+              disabled={status === 'loading'}
+              style={{
+                width: '321px',
+                height: '53px',
+                opacity: 1,
+                borderRadius: '99px',
+                padding: '16px 14px',
+                backgroundColor: '#f5f5f3',
+                color: '#15161A',
+                border: 'none',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '10px',
+                cursor: 'pointer',
+                fontFamily: '"DM Sans", sans-serif',
+                fontWeight: 400,
+                fontStyle: 'normal',
+                fontSize: '16px',
+                lineHeight: '100%',
+                letterSpacing: '0.04em',
+                textAlign: 'center',
+                boxSizing: 'border-box'
               }}
-              placeholder="Pasword"
-              type="password"
-              value={password}
-            />
-          </label>
-
-          <button className="login-panel__forgot" type="button">
-            Forgot password?
-          </button>
-
-          <button className="login-panel__submit" onClick={handleLogin} type="button">
-            {status === 'loading' ? 'Logging In...' : 'Log In'}
-          </button>
-
-          {helperText ? (
-            <p className={`login-panel__status login-panel__status--${status}`.trim()}>{helperText}</p>
-          ) : null}
-
-          <p className="login-panel__signup">
-            Don&apos;t have an account? <button type="button">Sign Up</button>
-          </p>
-
-          <div className="login-panel__legal">
-            <button type="button">Terms of Service</button>
-            <span>|</span>
-            <button type="button">Privacy Policy</button>
+            >
+              Log in
+              <ArrowRight color="currentColor"/>
+            </button>
           </div>
         </div>
       </div>

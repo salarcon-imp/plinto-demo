@@ -5,7 +5,7 @@ export function AppShell({ children }: PropsWithChildren) {
   return (
     <div className="app-shell">
       <div className="app-shell__device">
-        <MobileFrame>{children}</MobileFrame>
+        {children}
       </div>
     </div>
   );
