@@ -8,6 +8,7 @@ import {
   MOTION_STAGGER,
 } from '../../animations/presets/motion';
 import WordMarkBone from '../../assets/logos/WordMark-Bone.svg';
+import WhitePlinthMobile from '../../assets/ui/white-plinth-mobile.png';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 type LoginState = 'idle' | 'loading' | 'error' | 'success';
@@ -62,7 +63,7 @@ export function LoginPage() {
         ? 'Preparing your access route...'
         : status === 'success'
           ? 'Access confirmed. Entering marketplace...'
-          : 'Use any credentials to simulate the experience.';
+          : '';
 
   return (
     <section className="login-stage" ref={pageRef}>
@@ -71,7 +72,9 @@ export function LoginPage() {
 
       <div className="login-stage__scene">
         <img alt="Plinto" className="login-stage__brand" src={WordMarkBone} />
-        <div className="login-stage__pedestal" aria-hidden="true" />
+        <div className="login-stage__pedestal" aria-hidden="true">
+          <img alt="" className="login-stage__pedestal-image" src={WhitePlinthMobile} />
+        </div>
 
         <div className={`login-panel login-panel--${status}`.trim()}>
           <div className="login-panel__copy">
@@ -127,7 +130,9 @@ export function LoginPage() {
             {status === 'loading' ? 'Logging In...' : 'Log In'}
           </button>
 
-          <p className={`login-panel__status login-panel__status--${status}`.trim()}>{helperText}</p>
+          {helperText ? (
+            <p className={`login-panel__status login-panel__status--${status}`.trim()}>{helperText}</p>
+          ) : null}
 
           <p className="login-panel__signup">
             Don&apos;t have an account? <button type="button">Sign Up</button>

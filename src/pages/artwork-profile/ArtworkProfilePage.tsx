@@ -12,6 +12,9 @@ import { ArtistCard } from '../../components/cards/ArtistCard';
 import { NotFoundState } from '../../components/feedback/NotFoundState';
 import { RecordAccordion } from '../../components/identity/RecordAccordion';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+import VectorArrow from '../../assets/ui/vector-arrow.png';
+import VectorBack from '../../assets/ui/vector-back.png';
+import VectorFavorite from '../../assets/ui/vector-favorite.png';
 import {
   formatArtworkDimensions,
   getArtistById,
@@ -76,7 +79,7 @@ export function ArtworkProfilePage() {
     <section className="artwork-profile-page artwork-profile-page--dark" ref={pageRef}>
       <div className="artwork-profile-page__hero-actions">
         <Link aria-label="Back to marketplace" className="artwork-profile-page__hero-button" to="/marketplace">
-          ‹
+          <img alt="" src={VectorBack} />
         </Link>
         <div className="artwork-profile-page__hero-tools">
           <Link
@@ -84,10 +87,10 @@ export function ArtworkProfilePage() {
             className="artwork-profile-page__hero-button"
             to={record ? `/identity/${record.id}` : '/marketplace'}
           >
-            ↗
+            <img alt="" src={VectorArrow} />
           </Link>
           <button aria-label="Favorite artwork" className="artwork-profile-page__hero-button" type="button">
-            ♡
+            <img alt="" src={VectorFavorite} />
           </button>
         </div>
       </div>
@@ -95,6 +98,14 @@ export function ArtworkProfilePage() {
       <div className="artwork-profile-page__hero">
         <div className="artwork-profile-page__hero-visual" style={getVisualStyle(artwork.visual)} />
       </div>
+
+      {record ? (
+        <div className="artwork-profile-page__verified-row">
+          <span className="artwork-profile-page__verified-mark">
+            <img alt="Verified Plinto" src={VerifiedPlinto} />
+          </span>
+        </div>
+      ) : null}
 
       <div className="artwork-profile-page__panel">
         <div className="artwork-profile-page__title-row">
@@ -113,12 +124,6 @@ export function ArtworkProfilePage() {
               )}
             </p>
           </div>
-
-          {record ? (
-            <span className="artwork-profile-page__verified-mark">
-              <img alt="Verified Plinto" src={VerifiedPlinto} />
-            </span>
-          ) : null}
         </div>
 
         <div className="artwork-profile-page__description">
@@ -150,7 +155,7 @@ export function ArtworkProfilePage() {
           </p>
         </div>
         <button className="artwork-profile-offer__button" type="button">
-          INQUIRE
+          Inquire
         </button>
       </div>
     </section>
