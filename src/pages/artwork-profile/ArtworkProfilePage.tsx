@@ -15,6 +15,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 import VectorArrow from '../../assets/ui/vector-arrow.png';
 import VectorBack from '../../assets/ui/vector-back.png';
 import VectorFavorite from '../../assets/ui/vector-favorite.png';
+import BgMaker from '../../assets/ui/bg-maker.png';
 import {
   formatArtworkDimensions,
   getArtistById,
@@ -22,7 +23,7 @@ import {
   getRecordByArtworkId,
 } from '../../utils/plinto';
 import { getVisualStyle } from '../../utils/visuals';
-import VerifiedPlinto from '../../assets/ui/verified-plinto.png';
+import VerifiedPlinto from '../../assets/ui/verified-plinto-latest.png';
 
 export function ArtworkProfilePage() {
   const { artworkId } = useParams();
@@ -136,7 +137,7 @@ export function ArtworkProfilePage() {
         {artist ? (
           <div className="artwork-profile-page__maker">
             <p className="artwork-profile-page__section-label">ABOUT THE MAKER</p>
-            <ArtistCard artist={artist} />
+            <ArtistCard artist={artist} avatarSrc={BgMaker} />
           </div>
         ) : null}
 

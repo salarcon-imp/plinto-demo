@@ -3,12 +3,17 @@ import { getVisualStyle } from '../../utils/visuals';
 
 type ArtistCardProps = {
   artist: Artist;
+  avatarSrc?: string;
 };
 
-export function ArtistCard({ artist }: ArtistCardProps) {
+export function ArtistCard({ artist, avatarSrc }: ArtistCardProps) {
   return (
     <article className="artist-card">
-      <div className="artist-card__avatar" style={getVisualStyle(artist.avatar)} />
+      {avatarSrc ? (
+        <img alt="" className="artist-card__avatar artist-card__avatar--image" src={avatarSrc} />
+      ) : (
+        <div className="artist-card__avatar" style={getVisualStyle(artist.avatar)} />
+      )}
       <div className="artist-card__body">
         <p className="artist-card__name">{artist.name}</p>
         <p className="artist-card__location">

@@ -97,6 +97,12 @@
   background-color: var(--color-bg-elevated);
 }
 
+.artist-card__avatar--image {
+  display: block;
+  object-fit: cover;
+  border: 1px solid rgba(245, 245, 243, 0.92);
+}
+
 .artist-card__body {
   gap: 2px;
   padding: 0;
