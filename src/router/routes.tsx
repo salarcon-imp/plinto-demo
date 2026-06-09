@@ -1,12 +1,12 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { App } from '../app/App';
+import { HomePage } from '../pages/home/HomePage';
 import { ArtworkProfilePage } from '../pages/artwork-profile/ArtworkProfilePage';
 import { IdentityRecordPage } from '../pages/identity-record/IdentityRecordPage';
-import { InvitationPage } from '../pages/invitation/InvitationPage';
 import { LoginPage } from '../pages/login/LoginPage';
 import { MarketplacePage } from '../pages/marketplace/MarketplacePage';
+import { OnboardingPage } from '../pages/onboarding/OnboardingPage';
 import { ScanPiecePage } from '../pages/scan-piece/ScanPiecePage';
-import { UserProfilePage } from '../pages/user-profile/UserProfilePage';
 import { WorkFoundPage } from '../pages/work-found/WorkFoundPage';
 
 export const router = createBrowserRouter([
@@ -16,30 +16,30 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate replace to="/login" />,
+        element: <HomePage />,
+      },
+      {
+        path: 'home',
+        element: <HomePage />,
       },
       {
         path: 'splash',
-        element: <Navigate replace to="/login" />,
+        element: <Navigate replace to="/home" />,
       },
       {
         path: 'onboarding',
-        element: <Navigate replace to="/login" />,
+        element: <OnboardingPage />,
       },
       {
         path: 'login',
         element: <LoginPage />,
       },
       {
-        path: 'invitation',
-        element: <InvitationPage />,
-      },
-      {
         path: 'marketplace',
         element: <MarketplacePage />,
       },
       {
-        path: 'marketplace/artwork/:artworkId',
+        path: 'artpiece/:artworkId',
         element: <ArtworkProfilePage />,
       },
       {
@@ -47,16 +47,32 @@ export const router = createBrowserRouter([
         element: <IdentityRecordPage />,
       },
       {
-        path: 'scan',
+        path: 'artscan',
         element: <ScanPiecePage />,
       },
       {
-        path: 'scan/found/:artworkId',
+        path: 'workfound/:artworkId',
         element: <WorkFoundPage />,
       },
       {
+        path: 'marketplace/artwork/:artworkId',
+        element: <Navigate replace to="/marketplace" />,
+      },
+      {
+        path: 'scan',
+        element: <Navigate replace to="/artscan" />,
+      },
+      {
+        path: 'scan/found/:artworkId',
+        element: <Navigate replace to="/workfound/yellow-tide" />,
+      },
+      {
+        path: 'invitation',
+        element: <Navigate replace to="/marketplace" />,
+      },
+      {
         path: 'profile/:userId',
-        element: <UserProfilePage />,
+        element: <Navigate replace to="/marketplace" />,
       },
     ],
   },
