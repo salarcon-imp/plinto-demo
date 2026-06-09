@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import {
-  LoginDefault,
-  LoginError,
-  LoginKeyboard,
-  LoginLoading,
-} from '../../assets/zip-v2';
-import { MockupScreen } from '../../components/layout/MockupScreen';
+import { brandAssets } from '../../assets/logos';
 
-type LoginState = 'default' | 'focused' | 'loading' | 'error';
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+type LoginState = 'default' | 'loading';
 
 export function LoginPage() {
-  const [email, setEmail] = useState('');
   const [state, setState] = useState<LoginState>('default');
   const navigate = useNavigate();
 
@@ -29,56 +21,38 @@ export function LoginPage() {
     return () => window.clearTimeout(timeoutId);
   }, [navigate, state]);
 
-  const screenImage =
-    state === 'loading'
-      ? LoginLoading
-      : state === 'error'
-        ? LoginError
-        : state === 'focused'
-          ? LoginKeyboard
-          : LoginDefault;
-
-  const handleSubmit = () => {
-    if (EMAIL_REGEX.test(email.trim())) {
-      setState('loading');
-      return;
-    }
-
-    setState('error');
-  };
-
   return (
-    <MockupScreen alt="Plinto login screen" className="zip-login" imageSrc={screenImage}>
-      {state !== 'loading' ? (
-        <input
-          aria-label="Email address"
-          className="zip-login__input"
-          onBlur={() => {
-            if (state === 'focused' && email.trim().length === 0) {
-              setState('default');
-            }
-          }}
-          onChange={(event) => {
-            setEmail(event.target.value);
-            if (state === 'error') {
-              setState('focused');
-            }
-          }}
-          onFocus={() => setState('focused')}
-          type="email"
-          value={email}
-        />
-      ) : null}
+    <section className={`intro-login intro-login--${state}`.trim()}>
+      <div className="intro-home__status">
+        <span>9:41</span>
+        <span className="intro-home__status-icons" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+      </div>
 
-      {state === 'error' ? (
-        <button className="hotspot hotspot--login-retry" onClick={() => setState('default')} type="button">
-          <span className="sr-only">Retry login</span>
-        </button>
+      <div className="intro-login__brand">
+        <img alt="Plinto" className="intro-login__logo" src={brandAssets.WordMarkBlack} />
+        <p className="intro-login__subtitle">Welcome back</p>
+      </div>
+
+      {state === 'loading' ? (
+        <div className="intro-login__loading">
+          <button className="intro-login__loading-button" type="button">
+            <Loader2 className="intro-login__spinner" size={22} strokeWidth={1.75} />
+          </button>
+        </div>
       ) : (
-        <button className="hotspot hotspot--login-submit" onClick={handleSubmit} type="button">
-          <span className="sr-only">Submit login</span>
-        </button>
+        <div className="intro-login__card intro-login__card--simple">
+          <p className="intro-login__message">Log in with the email address you registered with</p>
+
+          <button className="intro-login__submit" onClick={() => setState('loading')} type="button">
+            <span>Log in</span>
+            <ArrowRight size={18} strokeWidth={1.7} />
+          </button>
+        </div>
       )}
-    </MockupScreen>
+    </section>
   );
 }
