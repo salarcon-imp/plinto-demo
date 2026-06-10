@@ -1,7 +1,7 @@
 .mockup-screen {
   position: relative;
   width: 100%;
-  min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
+  min-height: 100dvh;
   background: #fff;
 }
 
@@ -39,11 +39,13 @@
 .intro-onboarding,
 .intro-login {
   display: flex;
-  min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
+  width: 100%;
+  min-height: 100dvh;
   flex-direction: column;
   padding: max(28px, env(safe-area-inset-top)) 16px 12px;
   background: #f5f5f3;
   color: #15161a;
+  overflow-x: hidden;
 }
 
 .intro-home__content {
@@ -66,7 +68,7 @@
 .app-marketplace-v2__wordmark--light,
 .invitation-page__logo--light,
 .splash-screen__logo--light {
-  filter: brightness(0) saturate(100%);
+  filter: none;
 }
 
 .intro-home__logo--light,
@@ -578,7 +580,9 @@
 .app-artpiece,
 .app-artscan-v2,
 .app-workfound-v2 {
-  min-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(24px, env(safe-area-inset-bottom)));
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 .app-marketplace-v2 {
