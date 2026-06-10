@@ -5,21 +5,12 @@ import { brandAssets } from '../../assets/logos';
 export function HomePage() {
   return (
     <section className="intro-home">
-      <div className="intro-home__status">
-        <span>9:41</span>
-        <span className="intro-home__status-icons" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </div>
-
       <div className="intro-home__content">
-        <img alt="Plinto" className="intro-home__logo" src={brandAssets.WordMarkBlack} />
-        <p className="intro-home__subtitle">Welcome back</p>
+        <img alt="Plinto" className="intro-home__logo intro-home__logo--light" src={brandAssets.OfficialLogo} />
+        <p className="intro-home__subtitle">Bienvenido de regreso</p>
       </div>
 
-      <Link aria-label="Open onboarding" className="intro-home__cta" to="/onboarding">
+      <Link aria-label="Abrir login" className="intro-home__cta" to="/login">
         <ArrowUp size={24} strokeWidth={1.7} />
       </Link>
     </section>

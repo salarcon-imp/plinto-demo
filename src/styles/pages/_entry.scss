@@ -62,11 +62,16 @@
 }
 
 .login-stage__brand {
-  width: 140px;
+  width: 84px;
   position: relative;
   z-index: 2;
   margin-top: 112px;
   margin-bottom: 20px;
+}
+
+.splash-screen__logo--light {
+  width: 128px;
+  height: auto;
 }
 
 .login-stage__pedestal {

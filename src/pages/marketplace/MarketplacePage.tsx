@@ -13,17 +13,6 @@ const MARKET_FILTERS = [
   { id: 'figurative', label: 'Pop Art' },
 ] as const;
 
-const FEATURED_IDS = [
-  'artwork-smokey',
-  'artwork-acb',
-  'artwork-warrior-2',
-  'artwork-family-mundane',
-  'artwork-identidades-civic',
-  'artwork-yellow-tide',
-  'artwork-echo-split',
-  'artwork-ashen-current',
-];
-
 function formatAvailability(value: string) {
   switch (value) {
     case 'available':
@@ -40,27 +29,22 @@ function formatAvailability(value: string) {
 }
 
 export function MarketplacePage() {
-  const [activeFilter, setActiveFilter] = useState<string>('minimalism');
+  const [activeFilter, setActiveFilter] = useState<string>('');
 
   const items = useMemo(() => {
-    return FEATURED_IDS.map((id) => artworks.find((artwork) => artwork.id === id))
-      .filter((artwork): artwork is NonNullable<typeof artwork> => Boolean(artwork))
-      .filter((artwork) => artwork.categoryIds.includes(activeFilter) || activeFilter === 'abstract');
+    const sortedArtworks = [...artworks].sort((left, right) => left.year - right.year);
+
+    if (!activeFilter) {
+      return sortedArtworks;
+    }
+
+    return sortedArtworks.filter((artwork) => artwork.categoryIds.includes(activeFilter));
   }, [activeFilter]);
 
   return (
     <section className="app-marketplace-v2">
-      <div className="intro-home__status">
-        <span>9:41</span>
-        <span className="intro-home__status-icons" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </div>
-
       <header className="app-marketplace-v2__header">
-        <img alt="Plinto" className="app-marketplace-v2__wordmark" src={brandAssets.WordMarkBlack} />
+        <img alt="Plinto" className="app-marketplace-v2__wordmark app-marketplace-v2__wordmark--light" src={brandAssets.OfficialLogo} />
         <button aria-label="Open profile" className="app-marketplace-v2__profile" type="button">
           <UserCircle2 size={24} strokeWidth={1.9} />
         </button>
@@ -93,7 +77,6 @@ export function MarketplacePage() {
                 <p className="app-marketplace-v2__meta">
                   {artwork.medium} on {artwork.support.toLowerCase()}, {artwork.year}
                 </p>
-                <p className="app-marketplace-v2__availability">{formatAvailability(artwork.availability)}</p>
               </div>
             </Link>
           );
@@ -102,7 +85,7 @@ export function MarketplacePage() {
 
       <div className="app-marketplace-v2__floating">
         <Link aria-label="Open art scan" className="app-marketplace-v2__scan" to="/artscan">
-          <img alt="Plinto scan" src={brandAssets.BrandMark} />
+          <img alt="Identificar obra" src={brandAssets.PlintoIcon} />
         </Link>
       </div>
     </section>

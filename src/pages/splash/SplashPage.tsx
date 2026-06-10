@@ -9,7 +9,7 @@ import {
   MOTION_OFFSET_Y,
   MOTION_STAGGER,
 } from '../../animations/presets/motion';
-import WordMarkBlack from '../../assets/logos/WordMark-Black.svg';
+import { brandAssets } from '../../assets/logos';
 import { PrimaryButton } from '../../components/primitives/PrimaryButton';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
@@ -90,7 +90,7 @@ export function SplashPage() {
       <div className="splash-screen__glow" />
 
       <div className="splash-screen__mark">
-        <img alt="Plinto" className="splash-screen__logo" src={WordMarkBlack} />
+        <img alt="Plinto" className="splash-screen__logo splash-screen__logo--light" src={brandAssets.OfficialLogo} />
       </div>
 
       <div className="splash-screen__copy">

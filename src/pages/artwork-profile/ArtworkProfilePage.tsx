@@ -1,8 +1,5 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronLeft, Heart } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import ArrowUpIcon from '../../assets/icons/artpiece-arrow-up.svg';
-import ChevronLeftIcon from '../../assets/icons/artpiece-chevron-left.svg';
-import HeartIcon from '../../assets/icons/artpiece-heart.svg';
 import VerifiedPlinto from '../../assets/ui/verified-plinto-latest.png';
 import { NotFoundState } from '../../components/feedback/NotFoundState';
 import { artworks } from '../../data';
@@ -49,26 +46,17 @@ export function ArtworkProfilePage() {
 
   return (
     <section className="app-artpiece">
-      <div className="intro-home__status intro-home__status--light">
-        <span>9:41</span>
-        <span className="intro-home__status-icons intro-home__status-icons--light" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </div>
-
       <header className="app-artpiece__header">
         <Link className="app-artpiece__icon app-artpiece__icon--back" to="/marketplace">
-          <img alt="Back" src={ChevronLeftIcon} />
+          <ChevronLeft aria-hidden="true" size={22} strokeWidth={2} />
         </Link>
         <div />
         <div className="app-artpiece__header-actions">
           <Link className="app-artpiece__icon app-artpiece__icon--arrow" to={record ? `/identity/${record.id}` : '/marketplace'}>
-            <img alt="Open identity" src={ArrowUpIcon} />
+            <ArrowUpRight aria-hidden="true" size={22} strokeWidth={2} />
           </Link>
           <button className="app-artpiece__icon app-artpiece__icon--heart" type="button">
-            <img alt="Favorite" src={HeartIcon} />
+            <Heart aria-hidden="true" size={21} strokeWidth={2} />
           </button>
         </div>
       </header>

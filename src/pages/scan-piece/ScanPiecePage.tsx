@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ScanLine, Sparkles } from 'lucide-react';
+import { LoaderCircle, X, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { artworks } from '../../data';
 import { getVisualStyle } from '../../utils/visuals';
@@ -7,7 +7,14 @@ import { getVisualStyle } from '../../utils/visuals';
 export function ScanPiecePage() {
   const navigate = useNavigate();
   const artwork = artworks.find((item) => item.slug === 'yellow-tide') ?? artworks[0];
-  const [state, setState] = useState<'idle' | 'scanning'>('idle');
+  const [state] = useState<'scanning'>('scanning');
+  const aspectRatio = artwork.dimensionsCm.width / artwork.dimensionsCm.height;
+  const isLandscape = aspectRatio >= 1;
+  const artworkFrameStyle = {
+    aspectRatio: `${artwork.dimensionsCm.width} / ${artwork.dimensionsCm.height}`,
+    width: isLandscape ? 'min(calc(100% - 40px), 330px)' : 'min(72vw, 286px)',
+    maxWidth: '100%',
+  };
 
   useEffect(() => {
     if (state !== 'scanning') {
@@ -16,7 +23,7 @@ export function ScanPiecePage() {
 
     const timeoutId = window.setTimeout(() => {
       navigate(`/workfound/${artwork.slug}`);
-    }, 1600);
+    }, 2200);
 
     return () => window.clearTimeout(timeoutId);
   }, [artwork.slug, navigate, state]);
@@ -27,36 +34,37 @@ export function ScanPiecePage() {
 
       <header className="app-artscan-v2__top">
         <button className="app-artscan-v2__icon" onClick={() => navigate('/marketplace')} type="button">
-          <ArrowLeft size={20} strokeWidth={1.8} />
+          <X size={22} strokeWidth={1.7} />
         </button>
-        <div className="app-artscan-v2__title">
-          <p>Plinto camera</p>
-          <h1>Scan Piece</h1>
-        </div>
+        <h1 className="app-artscan-v2__heading">Scan Piece</h1>
         <button className="app-artscan-v2__icon" type="button">
-          <Sparkles size={18} strokeWidth={1.8} />
+          <Zap size={18} strokeWidth={1.8} />
         </button>
       </header>
 
+      <div className="app-artscan-v2__status">
+        <p>Scanning...</p>
+        <LoaderCircle className="app-artscan-v2__status-spinner" size={44} strokeWidth={1.8} />
+      </div>
+
       <div className="app-artscan-v2__viewport">
-        <div className="app-artscan-v2__surface" style={getVisualStyle(artwork.visual)} />
-        <div className={`app-artscan-v2__scanner ${state === 'scanning' ? 'app-artscan-v2__scanner--active' : ''}`} />
-        <div className="app-artscan-v2__corners" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
+        <div className="app-artscan-v2__gallery" aria-hidden="true" />
+        <div className="app-artscan-v2__artwork-shell" style={artworkFrameStyle}>
+          <div className="app-artscan-v2__surface" style={getVisualStyle(artwork.visual)} />
+          <div className={`app-artscan-v2__scanner ${state === 'scanning' ? 'app-artscan-v2__scanner--active' : ''}`} />
+          <div className="app-artscan-v2__corners" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
       </div>
 
       <div className="app-artscan-v2__bottom">
-        <p>{state === 'scanning' ? 'Scanning artwork identity...' : 'Center the piece and begin scan.'}</p>
-        <button
-          className={`app-artscan-v2__trigger ${state === 'scanning' ? 'app-artscan-v2__trigger--active' : ''}`.trim()}
-          onClick={() => setState('scanning')}
-          type="button"
-        >
-          <ScanLine size={24} strokeWidth={1.7} />
+        <p>Hold still please</p>
+        <button className="app-artscan-v2__trigger app-artscan-v2__trigger--active" type="button">
+          <span className="app-artscan-v2__trigger-core" />
         </button>
       </div>
     </section>

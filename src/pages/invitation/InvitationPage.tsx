@@ -7,7 +7,7 @@ import {
   MOTION_OFFSET_Y,
   MOTION_STAGGER,
 } from '../../animations/presets/motion';
-import WordMarkBlack from '../../assets/logos/WordMark-Black.svg';
+import { brandAssets } from '../../assets/logos';
 import { EventInvitationCard } from '../../components/cards/EventInvitationCard';
 import { NotFoundState } from '../../components/feedback/NotFoundState';
 import { PageHeader } from '../../components/navigation/PageHeader';
@@ -58,7 +58,7 @@ export function InvitationPage() {
       <PageHeader backTo="/marketplace" title="Invitation" />
 
       <div className="invitation-page__hero">
-        <img alt="Plinto" className="invitation-page__logo" src={WordMarkBlack} />
+        <img alt="Plinto" className="invitation-page__logo invitation-page__logo--light" src={brandAssets.OfficialLogo} />
         <span className="invitation-page__eyebrow">Exclusive access</span>
         <h1 className="invitation-page__title">You have a place on the plinth.</h1>
         <p className="invitation-page__description">

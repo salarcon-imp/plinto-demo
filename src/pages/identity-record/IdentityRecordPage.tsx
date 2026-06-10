@@ -36,15 +36,6 @@ export function IdentityRecordPage() {
 
   return (
     <section className="app-identity-v2">
-      <div className="intro-home__status intro-home__status--light">
-        <span>9:41</span>
-        <span className="intro-home__status-icons intro-home__status-icons--light" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </div>
-
       <header className="app-identity-v2__header">
         <Link className="app-identity-v2__icon" to="/marketplace">
           <ArrowLeft size={21} strokeWidth={1.8} />
@@ -53,7 +44,7 @@ export function IdentityRecordPage() {
           <h1>The Identity</h1>
         </div>
         <Link className="app-identity-v2__brand" to={`/artpiece/${artwork.slug}`}>
-          <img alt="Plinto" src={brandAssets.WordMarkBone} />
+          <img alt="Plinto" src={brandAssets.OfficialLogo} />
         </Link>
       </header>
 

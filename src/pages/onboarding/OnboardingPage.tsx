@@ -3,10 +3,10 @@ import { ArrowRight, ChevronsRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from '../../animations/gsap';
 import { MOTION_DURATION_MD, MOTION_EASE, MOTION_OFFSET_Y } from '../../animations/presets/motion';
-import Onboarding1 from '../../assets/onboarding/plinto-login-1.svg';
-import Onboarding2 from '../../assets/onboarding/plinto-login-2.svg';
-import Onboarding3 from '../../assets/onboarding/plinto-login-3.svg';
-import Onboarding4 from '../../assets/onboarding/plinto-login-4.svg';
+import Onboarding1 from '../../assets/onboarding/plinto-waving.png';
+import Onboarding2 from '../../assets/onboarding/plinto-blockchain.png';
+import Onboarding3 from '../../assets/onboarding/plinto-art.png';
+import Onboarding4 from '../../assets/onboarding/plinto-looking.png';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 type OnboardingSlide = {
@@ -23,34 +23,34 @@ const SLIDES: OnboardingSlide[] = [
   {
     id: 'slide-1',
     image: Onboarding1,
-    title: ['Hi.', "I’m Plinto"],
+    title: ['Hola.', 'Soy Plinto.'],
     description: '',
-    cta: 'Continue',
+    cta: 'Continuar',
     imageClassName: 'intro-onboarding__image--one',
   },
   {
     id: 'slide-2',
     image: Onboarding2,
-    title: ['What enters here never', 'disappears.'],
+    title: ['Lo que entra aquí no', 'desaparece.'],
     description:
-      'Every work inscribed on the plinth has a permanent, verifiable record. One that cannot be altered or erased.',
-    cta: 'Continue',
+      'Cada obra inscrita en el plinto tiene un registro permanente, verificable, que no puede alterarse ni borrarse.',
+    cta: 'Continuar',
     imageClassName: 'intro-onboarding__image--two',
   },
   {
     id: 'slide-3',
     image: Onboarding3,
-    title: ['Today we show you how it', 'works.'],
-    description: 'A real work. A real record. See for yourself that it exists in our infrastructure.',
-    cta: 'Continue',
+    title: ['Hoy te mostramos como', 'funciona.'],
+    description: 'Una obra real. Un registro real. Verifica con tus propios ojos que existe en nuestra infraestructura.',
+    cta: 'Continuar',
     imageClassName: 'intro-onboarding__image--three',
   },
   {
     id: 'slide-4',
     image: Onboarding4,
-    title: ['Ready for this experience?'],
-    description: 'Explore the marketplace and verify your first plinted work',
-    cta: 'Start',
+    title: ['¿Listo para esta', 'experiencia?'],
+    description: 'Explora el marketplace y verifica tu primera obra plintada.',
+    cta: 'Comenzar',
     imageClassName: 'intro-onboarding__image--four',
     live: true,
   },
@@ -84,7 +84,7 @@ export function OnboardingPage() {
 
   const handleContinue = () => {
     if (isLast) {
-      navigate('/login');
+      navigate('/marketplace');
       return;
     }
 
@@ -93,18 +93,9 @@ export function OnboardingPage() {
 
   return (
     <section className="intro-onboarding" ref={slideRef}>
-      <div className="intro-home__status">
-        <span>9:41</span>
-        <span className="intro-home__status-icons" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </div>
-
       <div className="intro-onboarding__topbar">
         <div />
-        <Link className="intro-onboarding__skip" to="/login">
+        <Link className="intro-onboarding__skip" to="/marketplace">
           Saltar
         </Link>
       </div>
@@ -117,7 +108,7 @@ export function OnboardingPage() {
         {slide.live ? (
           <span className="intro-onboarding__live">
             <span className="intro-onboarding__live-dot" />
-            LIVE
+            EN VIVO
           </span>
         ) : null}
 
