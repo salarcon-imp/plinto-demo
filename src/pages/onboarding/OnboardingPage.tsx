@@ -101,7 +101,16 @@ export function OnboardingPage() {
       </div>
 
       <div className="intro-onboarding__visual">
-        <img alt="" className={`intro-onboarding__image ${slide.imageClassName}`} src={slide.image} />
+        {SLIDES.map((item, itemIndex) => (
+          <img
+            key={item.id}
+            alt=""
+            className={`intro-onboarding__image ${item.imageClassName} ${
+              itemIndex === index ? 'intro-onboarding__image--active' : ''
+            }`.trim()}
+            src={item.image}
+          />
+        ))}
       </div>
 
       <div className="intro-onboarding__copy">

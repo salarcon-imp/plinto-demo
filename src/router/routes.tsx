@@ -8,6 +8,7 @@ import { MarketplacePage } from '../pages/marketplace/MarketplacePage';
 import { OnboardingPage } from '../pages/onboarding/OnboardingPage';
 import { ScanPiecePage } from '../pages/scan-piece/ScanPiecePage';
 import { WorkFoundPage } from '../pages/work-found/WorkFoundPage';
+import { InvitationPage } from '../pages/invitation/InvitationPage';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: 'splash',
         element: <Navigate replace to="/home" />,
+      },
+      {
+        path: 'invitation',
+        element: <InvitationPage />
       },
       {
         path: 'onboarding',
