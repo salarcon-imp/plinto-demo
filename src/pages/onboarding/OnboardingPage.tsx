@@ -92,7 +92,7 @@ export function OnboardingPage() {
   };
 
   return (
-    <section className="intro-onboarding" ref={slideRef}>
+    <section className={`intro-onboarding intro-onboarding--slide-${index + 1}`} ref={slideRef}>
       <div className="intro-onboarding__topbar">
         <div />
         <Link className="intro-onboarding__skip" to="/marketplace">
