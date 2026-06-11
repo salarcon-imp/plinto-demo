@@ -26,6 +26,7 @@ export function LoginPage() {
   const showLoading = currentView === 'loading';
   const showError = currentView === 'error';
   const isInteractive = previewView === null;
+  const isSubmitDisabled = !email.trim();
 
   useEffect(() => {
     if (!isInteractive || state !== 'loading') {
@@ -52,6 +53,10 @@ export function LoginPage() {
   }, [navigate, previewView]);
 
   const handleSubmit = () => {
+    if (isSubmitDisabled) {
+      return;
+    }
+
     if (email.trim().toLowerCase() === VALID_LOGIN_EMAIL) {
       setState('loading');
       return;
@@ -115,7 +120,7 @@ export function LoginPage() {
                 />
               </label>
 
-              <button className="intro-login__submit" onClick={handleSubmit} type="button">
+              <button className="intro-login__submit" disabled={isSubmitDisabled} onClick={handleSubmit} type="button">
                 <span>Entrar</span>
                 <ArrowRight size={18} strokeWidth={1.7} />
               </button>

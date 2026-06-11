@@ -1,13 +1,24 @@
 // ============================================================
 // PLINTO — Color Tokens
+// Dart Sass 3.0 ready · @use module system
+// ============================================================
+// Mirror logic: light[n] ↔ dark[n] (same position = opposite)
+// Constants (identical in both modes): $abyss, $warm
+// Ink Blue / Ink Blue Hi: identical in both modes (brand accent)
 // ============================================================
 
+// --- Constants — never change between modes ---
 $abyss: #0d0e11;
 $warm: #c8c3ba;
 
+// --- Ink Blue — always the same ---
 $ink-blue: #324b64;
 $ink-blue-hi: #6ba3c8;
 
+// ============================================================
+// LIGHT MODE scale
+// Position 1 (lightest) ↔ Position 6 (darkest)
+// ============================================================
 $light-bone: #f5f5f3;
 $light-alabaster: #edecea;
 $light-dust: #e0ddd9;
@@ -15,6 +26,10 @@ $light-silver: #8a8a8f;
 $light-slate: #5a5a5f;
 $light-ink: #15161a;
 
+// ============================================================
+// DARK MODE scale
+// Mirror of light — position 1 dark ↔ position 6 light
+// ============================================================
 $dark-ink: #15161a;
 $dark-ink-mid: #1e2028;
 $dark-ink-soft: #2a2b33;
@@ -32,6 +47,25 @@ $semantic-light: (
   'text-constant': $abyss,
   'border-subtle': $light-dust,
   'border-default': $light-silver,
+  'accent': $ink-blue,
+  'accent-hi': $ink-blue-hi,
+  'warm': $warm,
+  'technical-surface': $dark-ink,
+  'technical-elevated': $dark-ink-mid,
+  'technical-border': rgba($dark-bone, 0.12),
+  'technical-text': $dark-bone,
+);
+
+$semantic-dark: (
+  'bg-page': $dark-ink,
+  'bg-surface': $dark-ink-mid,
+  'bg-elevated': $dark-ink-soft,
+  'text-primary': $dark-bone,
+  'text-secondary': $dark-mist,
+  'text-tertiary': $dark-stone,
+  'text-constant': $abyss,
+  'border-subtle': $dark-ink-soft,
+  'border-default': $dark-stone,
   'accent': $ink-blue,
   'accent-hi': $ink-blue-hi,
   'warm': $warm,

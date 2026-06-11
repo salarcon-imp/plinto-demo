@@ -1,3 +1,11 @@
+// ============================================================
+// PLINTO — Spacing & Radius Tokens
+// Dart Sass 3.0 ready · @use module system
+// ============================================================
+// Base unit: 2px · all values are multiples of 2
+// ============================================================
+
+// --- Raw scale ---
 $space-1: 2px;
 $space-2: 4px;
 $space-3: 6px;
@@ -21,6 +29,7 @@ $space-40: 80px;
 $space-48: 96px;
 $space-64: 128px;
 
+// --- Semantic aliases ---
 $spacing-xs: $space-2;
 $spacing-sm: $space-3;
 $spacing-md: $space-4;
@@ -31,6 +40,7 @@ $spacing-2xl: $space-16;
 $spacing-3xl: $space-24;
 $spacing-4xl: $space-32;
 
+// --- Border radius ---
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 12px;

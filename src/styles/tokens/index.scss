@@ -1,3 +1,8 @@
+// ============================================================
+// PLINTO — Design Tokens · Main Entry
+// Dart Sass 3.0 ready · @use / @forward module system
+// ============================================================
+
 @use 'sass:map';
 @use './typography' as t;
 @use './colors' as c;
@@ -9,23 +14,60 @@
 @forward './mixins';
 
 :root {
+  // Typography
   --font-primary: #{t.$font-primary};
   --font-mono: #{t.$font-mono};
 
+  --fw-extralight: #{t.$fw-extralight};
+  --fw-light: #{t.$fw-light};
+  --fw-regular: #{t.$fw-regular};
+  --fw-medium: #{t.$fw-medium};
+
   --fs-36: #{t.$fs-36};
   --fs-32: #{t.$fs-32};
+  --fs-28: #{t.$fs-28};
   --fs-24: #{t.$fs-24};
+  --fs-20: #{t.$fs-20};
   --fs-16: #{t.$fs-16};
   --fs-14: #{t.$fs-14};
   --fs-12: #{t.$fs-12};
 
+  // Raw spacing
+  --space-1: #{s.$space-1};
+  --space-2: #{s.$space-2};
+  --space-3: #{s.$space-3};
   --space-4: #{s.$space-4};
+  --space-5: #{s.$space-5};
+  --space-6: #{s.$space-6};
+  --space-7: #{s.$space-7};
   --space-8: #{s.$space-8};
+  --space-9: #{s.$space-9};
+  --space-10: #{s.$space-10};
   --space-12: #{s.$space-12};
+  --space-14: #{s.$space-14};
   --space-16: #{s.$space-16};
+  --space-18: #{s.$space-18};
+  --space-20: #{s.$space-20};
+  --space-22: #{s.$space-22};
   --space-24: #{s.$space-24};
+  --space-28: #{s.$space-28};
   --space-32: #{s.$space-32};
+  --space-40: #{s.$space-40};
+  --space-48: #{s.$space-48};
+  --space-64: #{s.$space-64};
 
+  // Semantic spacing
+  --spacing-xs: #{s.$spacing-xs};
+  --spacing-sm: #{s.$spacing-sm};
+  --spacing-md: #{s.$spacing-md};
+  --spacing-base: #{s.$spacing-base};
+  --spacing-lg: #{s.$spacing-lg};
+  --spacing-xl: #{s.$spacing-xl};
+  --spacing-2xl: #{s.$spacing-2xl};
+  --spacing-3xl: #{s.$spacing-3xl};
+  --spacing-4xl: #{s.$spacing-4xl};
+
+  // Border radius
   --radius-sm: #{s.$radius-sm};
   --radius-md: #{s.$radius-md};
   --radius-lg: #{s.$radius-lg};
@@ -33,7 +75,22 @@
   --radius-2xl: #{s.$radius-2xl};
   --radius-full: #{s.$radius-full};
 
+  // Colors — light mode default
   @each $name, $value in c.$semantic-light {
     --color-#{$name}: #{$value};
+  }
+}
+
+[data-theme='dark'] {
+  @each $name, $value in c.$semantic-dark {
+    --color-#{$name}: #{$value};
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @each $name, $value in c.$semantic-dark {
+      --color-#{$name}: #{$value};
+    }
   }
 }

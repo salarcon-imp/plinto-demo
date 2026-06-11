@@ -43,26 +43,28 @@ export function MarketplacePage() {
 
   return (
     <section className="app-marketplace-v2">
-      <header className="app-marketplace-v2__header">
-        <img alt="Plinto" className="app-marketplace-v2__wordmark app-marketplace-v2__wordmark--light" src={brandAssets.OfficialLogo} />
-        <button aria-label="Open profile" className="app-marketplace-v2__profile" type="button">
-          <UserCircle2 size={24} strokeWidth={1.9} />
-        </button>
-      </header>
-
-      <div className="app-marketplace-v2__filters" role="tablist" aria-label="Marketplace filters">
-        {MARKET_FILTERS.map((filter) => (
-          <button
-            className={`app-marketplace-v2__filter ${
-              activeFilter === filter.id ? 'app-marketplace-v2__filter--active' : ''
-            }`.trim()}
-            key={filter.id}
-            onClick={() => setActiveFilter(filter.id)}
-            type="button"
-          >
-            {filter.label}
+      <div className="app-marketplace-v2__top">
+        <header className="app-marketplace-v2__header">
+          <img alt="Plinto" className="app-marketplace-v2__wordmark app-marketplace-v2__wordmark--light" src={brandAssets.OfficialLogo} />
+          <button aria-label="Open profile" className="app-marketplace-v2__profile" type="button">
+            <UserCircle2 size={24} strokeWidth={1.9} />
           </button>
-        ))}
+        </header>
+
+        <div className="app-marketplace-v2__filters" role="tablist" aria-label="Marketplace filters">
+          {MARKET_FILTERS.map((filter) => (
+            <button
+              className={`app-marketplace-v2__filter ${
+                activeFilter === filter.id ? 'app-marketplace-v2__filter--active' : ''
+              }`.trim()}
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              type="button"
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="app-marketplace-v2__grid">

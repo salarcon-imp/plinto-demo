@@ -1,57 +1,63 @@
+// ============================================================
+// PLINTO — Typography Mixins
+// Dart Sass 3.0 ready · @use module system
+// ============================================================
+// Usage in a component:
+//   @use '../tokens/mixins' as type;
+//   .heading { @include type.h1; }
+// ============================================================
+
 @use 'sass:map';
 @use './typography' as t;
 
-$type-scale: (
-  'display-1': (
-    family: t.$font-primary,
-    size: t.$fs-36,
-    weight: t.$fw-extralight,
-    letter-spacing: t.$ls-tight,
-    line-height: t.$lh-tight,
-  ),
-  'h1': (
-    family: t.$font-primary,
-    size: t.$fs-32,
-    weight: t.$fw-extralight,
-    letter-spacing: t.$ls-tight,
-    line-height: t.$lh-tight,
-  ),
-  'h2': (
-    family: t.$font-primary,
-    size: t.$fs-24,
-    weight: t.$fw-regular,
-    letter-spacing: t.$ls-snug,
-    line-height: t.$lh-base,
-  ),
-  'body': (
-    family: t.$font-primary,
-    size: t.$fs-16,
-    weight: t.$fw-light,
-    letter-spacing: t.$ls-normal,
-    line-height: t.$lh-copy,
-  ),
-  'label': (
-    family: t.$font-primary,
-    size: t.$fs-14,
-    weight: t.$fw-regular,
-    letter-spacing: t.$ls-normal,
-    line-height: 1,
-  ),
-  'mono': (
-    family: t.$font-mono,
-    size: t.$fs-12,
-    weight: t.$fw-regular,
-    letter-spacing: t.$ls-mono-px,
-    line-height: t.$lh-loose,
-  ),
-);
-
+// ============================================================
+// Base mixin — applies a token from the $type-scale map
+// ============================================================
 @mixin apply($token) {
-  $style: map.get($type-scale, $token);
+  $style: map.get(t.$type-scale, $token);
 
   font-family: map.get($style, 'family');
   font-size: map.get($style, 'size');
   font-weight: map.get($style, 'weight');
   letter-spacing: map.get($style, 'letter-spacing');
   line-height: map.get($style, 'line-height');
+
+  @if map.has-key($style, 'text-transform') {
+    text-transform: map.get($style, 'text-transform');
+  }
 }
+
+// Display
+@mixin display-1 { @include apply('display-display1'); }
+
+// Headings
+@mixin h1 { @include apply('headings-h1'); }
+@mixin h2 { @include apply('headings-h2'); }
+@mixin h3 { @include apply('headings-h3'); }
+@mixin h4 { @include apply('headings-h4'); }
+@mixin h5 { @include apply('headings-h5'); }
+@mixin h6 { @include apply('headings-h6'); }
+
+// Body
+@mixin body-large { @include apply('body-large'); }
+@mixin body-medium { @include apply('body-medium'); }
+
+// Labels
+@mixin label-large { @include apply('label-large'); }
+@mixin label-medium { @include apply('label-medium'); }
+@mixin label-small { @include apply('label-small'); }
+@mixin label-caption { @include apply('label-caption'); }
+
+// Card
+@mixin card-title { @include apply('card-title'); }
+@mixin card-subtitle { @include apply('card-subtitle'); }
+@mixin card-description { @include apply('card-description'); }
+
+// Information
+@mixin information-section-title { @include apply('information-section-title'); }
+@mixin information-label-title { @include apply('information-label-title'); }
+@mixin information-overline { @include apply('information-overline'); }
+
+// Mono
+@mixin mono-content-value { @include apply('mono-content-value'); }
+@mixin mono-caption { @include apply('mono-caption'); }

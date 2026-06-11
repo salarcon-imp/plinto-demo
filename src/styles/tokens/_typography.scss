@@ -1,11 +1,22 @@
+// ============================================================
+// PLINTO — Typography Tokens
+// Dart Sass 3.0 ready · @use module system
+// ============================================================
+// Source: Figma export · Mobile type scale v1.0
+// Fonts: DM Sans (200/300/400/500) · JetBrains Mono (400)
+// ============================================================
+
+// --- Font stacks ---
 $font-primary: 'DM Sans', sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
 
+// --- Font weights ---
 $fw-extralight: 200;
 $fw-light: 300;
 $fw-regular: 400;
 $fw-medium: 500;
 
+// --- Font sizes ---
 $fs-36: 36px;
 $fs-32: 32px;
 $fs-28: 28px;
@@ -15,12 +26,14 @@ $fs-16: 16px;
 $fs-14: 14px;
 $fs-12: 12px;
 
+// --- Letter spacing ---
 $ls-tight: -0.04em;
 $ls-snug: -0.02em;
 $ls-normal: 0em;
 $ls-wide-px: 1px;
 $ls-mono-px: 2px;
 
+// --- Line heights ---
 $lh-tight: 1.1;
 $lh-snug: 1.15;
 $lh-base: 1.2;
@@ -28,3 +41,181 @@ $lh-relaxed: 1.3;
 $lh-loose: 1.4;
 $lh-body: 1.55;
 $lh-copy: 1.6;
+
+// ============================================================
+// Type scale — full map for reference / iteration
+// Token names match Figma: Mobile/{Group}/{Name}
+// ============================================================
+$type-scale: (
+  'display-display1': (
+    family: $font-primary,
+    size: $fs-36,
+    weight: $fw-extralight,
+    letter-spacing: $ls-tight,
+    line-height: $lh-tight,
+    description: 'Hero moments · splash screens',
+  ),
+  'headings-h1': (
+    family: $font-primary,
+    size: $fs-32,
+    weight: $fw-extralight,
+    letter-spacing: $ls-tight,
+    line-height: $lh-tight,
+    description: 'Pantalla principal · onboarding heading',
+  ),
+  'headings-h2': (
+    family: $font-primary,
+    size: $fs-28,
+    weight: $fw-light,
+    letter-spacing: $ls-tight,
+    line-height: $lh-snug,
+    description: 'Section titles',
+  ),
+  'headings-h3': (
+    family: $font-primary,
+    size: $fs-28,
+    weight: $fw-regular,
+    letter-spacing: $ls-tight,
+    line-height: $lh-snug,
+    description: 'Profile work name · section principal',
+  ),
+  'headings-h4': (
+    family: $font-primary,
+    size: $fs-24,
+    weight: $fw-extralight,
+    letter-spacing: $ls-tight,
+    line-height: $lh-base,
+    description: 'Modal heading · welcome',
+  ),
+  'headings-h5': (
+    family: $font-primary,
+    size: $fs-24,
+    weight: $fw-regular,
+    letter-spacing: $ls-snug,
+    line-height: $lh-base,
+    description: 'Card work title',
+  ),
+  'headings-h6': (
+    family: $font-primary,
+    size: $fs-20,
+    weight: $fw-light,
+    letter-spacing: $ls-snug,
+    line-height: $lh-base,
+    description: 'Section headers · screen titles · profile subtitle · maker name',
+  ),
+  'body-large': (
+    family: $font-primary,
+    size: $fs-16,
+    weight: $fw-light,
+    letter-spacing: $ls-normal,
+    line-height: $lh-copy,
+    description: 'Onboarding sub · profile description · long copy',
+  ),
+  'body-medium': (
+    family: $font-primary,
+    size: $fs-14,
+    weight: $fw-light,
+    letter-spacing: $ls-normal,
+    line-height: $lh-body,
+    description: 'Body copy general · descriptions · empty states',
+  ),
+  'label-large': (
+    family: $font-primary,
+    size: $fs-16,
+    weight: $fw-regular,
+    letter-spacing: $ls-normal,
+    line-height: 1,
+    description: 'Buttons · inputs',
+  ),
+  'label-medium': (
+    family: $font-primary,
+    size: $fs-14,
+    weight: $fw-regular,
+    letter-spacing: $ls-normal,
+    line-height: 1,
+    description: 'Status pills · filter chips',
+  ),
+  'label-small': (
+    family: $font-primary,
+    size: $fs-12,
+    weight: $fw-regular,
+    letter-spacing: $ls-normal,
+    line-height: 1,
+    text-transform: uppercase,
+    description: 'Identity pill',
+  ),
+  'label-caption': (
+    family: $font-primary,
+    size: $fs-12,
+    weight: $fw-light,
+    letter-spacing: $ls-normal,
+    line-height: $lh-loose,
+    description: 'Timestamps · helper text · secondary metadata',
+  ),
+  'card-title': (
+    family: $font-primary,
+    size: $fs-20,
+    weight: $fw-regular,
+    letter-spacing: $ls-snug,
+    line-height: $lh-snug,
+    description: 'Work card title',
+  ),
+  'card-subtitle': (
+    family: $font-primary,
+    size: $fs-16,
+    weight: $fw-extralight,
+    letter-spacing: $ls-snug,
+    line-height: $lh-relaxed,
+    description: 'Artwork card · maker name',
+  ),
+  'card-description': (
+    family: $font-primary,
+    size: $fs-14,
+    weight: $fw-light,
+    letter-spacing: $ls-normal,
+    line-height: $lh-relaxed,
+    description: 'Artwork card · material and year',
+  ),
+  'information-section-title': (
+    family: $font-primary,
+    size: $fs-12,
+    weight: $fw-medium,
+    letter-spacing: $ls-wide-px,
+    line-height: 1,
+    description: 'Small section title',
+  ),
+  'information-label-title': (
+    family: $font-primary,
+    size: $fs-14,
+    weight: $fw-regular,
+    letter-spacing: $ls-normal,
+    line-height: 1,
+    text-transform: uppercase,
+    description: 'Information labels · field labels',
+  ),
+  'information-overline': (
+    family: $font-primary,
+    size: $fs-12,
+    weight: $fw-medium,
+    letter-spacing: $ls-wide-px,
+    line-height: 1,
+    text-transform: uppercase,
+    description: 'Eyebrows · overlines',
+  ),
+  'mono-content-value': (
+    family: $font-mono,
+    size: $fs-14,
+    weight: $fw-regular,
+    letter-spacing: $ls-mono-px,
+    line-height: $lh-loose,
+    description: 'Blockchain hash · transaction ID · record data',
+  ),
+  'mono-caption': (
+    family: $font-mono,
+    size: $fs-12,
+    weight: $fw-regular,
+    letter-spacing: $ls-mono-px,
+    line-height: $lh-loose,
+    description: 'Timestamps del registro · block number · metadata técnica',
+  ),
+);
