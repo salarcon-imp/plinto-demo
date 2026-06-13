@@ -2593,17 +2593,18 @@ width: calc(100% - 18px);
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  padding: 0 16px calc(20px + env(safe-area-inset-bottom));
 }
 
 /* ── Bottom Sheet (found + done) ── */
 .vf-sheet {
-  width: 100%;
+  width: calc(100% - 32px);
+  margin: 0 16px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   padding: 24px 18px calc(28px + env(safe-area-inset-bottom));
-  border-radius: 28px 28px 0 0;
+  border-radius: 28px;
   background: #1d1f26;
   color: #f7f6f2;
   animation: panel-appear 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
