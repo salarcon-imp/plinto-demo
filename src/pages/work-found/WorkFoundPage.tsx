@@ -104,26 +104,18 @@ export function WorkFoundPage() {
     );
   }
 
-  // ── "Badge" — floating pill overlay top-right, independent of marketplace ─
+  // ── "Badge" — badge IN header between logo and profile ───────────────────
   if (verifyState === 'badge' || verifyState === 'badge-open') {
     const isOpen = verifyState === 'badge-open';
     return (
       <div className="vf-scene vf-scene--live">
-        <div className="vf-scene__bg" aria-hidden="true"><MarketplaceBackground /></div>
+        <div className="vf-scene__bg" aria-hidden="true">
+          <MarketplaceBackground
+            verifyBadge="verificando"
+            onBadgeClick={() => setVerifyState(isOpen ? 'badge' : 'badge-open')}
+          />
+        </div>
         <div className="vf-frame">
-
-          {/* Floating badge — completely independent, top-right corner */}
-          <button
-            className="vf-floating-badge"
-            onClick={() => setVerifyState(isOpen ? 'badge' : 'badge-open')}
-            type="button"
-          >
-            <img src={BrandMark} alt="" className="vf-floating-badge__icon" />
-            <span>Verificando</span>
-            <span className="vf-floating-badge__spinner" />
-          </button>
-
-          {/* Toast + icons when badge is tapped */}
           {isOpen && (
             <div className="vf-bottom-group">
               <div className="vf-topbar">
@@ -151,7 +143,9 @@ export function WorkFoundPage() {
   // ── "Done" — IDENTIFICADA ─────────────────────────────────────────────────
   return (
     <div className="vf-scene">
-      <div className="vf-scene__bg" aria-hidden="true"><MarketplaceBackground /></div>
+      <div className="vf-scene__bg" aria-hidden="true">
+        <MarketplaceBackground verifyBadge="identificada" />
+      </div>
       <div className="vf-scene__blur" aria-hidden="true" />
       <div className="vf-frame">
         <div className="vf-sheet vf-sheet--identified">

@@ -1110,6 +1110,9 @@ width: calc(100% - 18px);
   background: #f5f5f3;
 }
 
+/* In bg context position:fixed now works correctly since vf-scene__bg
+   no longer has overflow:hidden that would break the fixed containing block */
+
 .app-marketplace-v2__header {
   display: flex;
   align-items: center;
@@ -2227,6 +2230,47 @@ width: calc(100% - 18px);
 
 
 
+
+/* ── Header verify badge ── */
+.vf-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 5px;
+  border: 0;
+  border-radius: 999px;
+  background: #1d1f26;
+  color: #f7f6f2;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.vf-header-badge__icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.vf-header-badge--identificada {
+  background: #f5f5f3;
+  color: #15161a;
+}
+
+.vf-header-badge__spinner {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid rgba(247,246,242,0.25);
+  border-top-color: #f7f6f2;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: intro-spin 0.9s linear infinite;
+}
+
 /* ── Scan pill — circle icon above toast ── */
 .vf-scan-pill {
   width: 44px;
@@ -2250,8 +2294,9 @@ width: calc(100% - 18px);
 /* ── Floating verify badge — independent overlay, top-right of vf-frame ── */
 .vf-floating-badge {
   position: absolute;
-  top: max(18px, env(safe-area-inset-top));
-  right: 0;
+  top: max(24px, env(safe-area-inset-top));
+  right: 48px; /* 16px frame padding + 24px profile + 8px gap */
+  transform: translateY(4px);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2265,7 +2310,6 @@ width: calc(100% - 18px);
   font-family: var(--font-primary);
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   z-index: 10;
 }
 
@@ -2502,7 +2546,6 @@ width: calc(100% - 18px);
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  overflow: hidden;
 }
 
 /* bg and blur always fill the full viewport */
@@ -2514,8 +2557,8 @@ width: calc(100% - 18px);
 }
 
 .vf-scene__bg {
-  overflow: hidden;
   pointer-events: none;
+  /* No overflow:hidden — would break position:fixed inside */
 }
 
 .vf-scene__blur {
@@ -2537,7 +2580,7 @@ width: calc(100% - 18px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 16px;
+  padding: 0;
   pointer-events: none;
 }
 
