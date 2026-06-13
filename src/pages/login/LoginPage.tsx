@@ -29,45 +29,38 @@ export function LoginPage() {
   const isSubmitDisabled = !email.trim();
 
   useEffect(() => {
-    if (!isInteractive || state !== 'loading') {
-      return;
-    }
-
+    if (!isInteractive || state !== 'loading') return;
     const timeoutId = window.setTimeout(() => {
       navigate('/login/loading');
     }, 900);
-
     return () => window.clearTimeout(timeoutId);
   }, [isInteractive, navigate, state]);
 
   useEffect(() => {
-    if (previewView !== 'loading') {
-      return;
-    }
-
+    if (previewView !== 'loading') return;
     const timeoutId = window.setTimeout(() => {
       navigate('/onboarding');
     }, 1100);
-
     return () => window.clearTimeout(timeoutId);
   }, [navigate, previewView]);
 
   const handleSubmit = () => {
-    if (isSubmitDisabled) {
-      return;
-    }
-
+    if (isSubmitDisabled) return;
     if (email.trim().toLowerCase() === VALID_LOGIN_EMAIL) {
       setState('loading');
       return;
     }
-
     setState('error');
   };
 
   const handleRetry = () => {
     setState('default');
     setEmail('');
+  };
+
+  // Error state → go to registration (Invite flow)
+  const handleRegister = () => {
+    navigate('/register');
   };
 
   return (
@@ -98,6 +91,10 @@ export function LoginPage() {
               <button className="intro-login__submit" onClick={handleRetry} type="button">
                 <span>Reintentar</span>
               </button>
+
+              <button className="intro-login__submit intro-login__submit--ghost" onClick={handleRegister} type="button">
+                <span>Crear cuenta nueva</span>
+              </button>
             </div>
           ) : (
             <div className="intro-login__card">
@@ -114,6 +111,7 @@ export function LoginPage() {
                   inputMode="email"
                   onChange={(event) => setEmail(event.target.value)}
                   onFocus={() => isInteractive && setIsFocused(true)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                   placeholder="Correo electrónico"
                   type="email"
                   value={email}

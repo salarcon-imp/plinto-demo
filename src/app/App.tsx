@@ -11,13 +11,21 @@ export function App() {
 
   useEffect(() => {
     const background = isDarkSurfaceRoute ? '#0d0e11' : '#f5f5f3';
+    const themeMeta = document.querySelector('meta[name="theme-color"]') ?? document.createElement('meta');
+
+    if (!themeMeta.getAttribute('name')) {
+      themeMeta.setAttribute('name', 'theme-color');
+      document.head.appendChild(themeMeta);
+    }
 
     document.documentElement.style.backgroundColor = background;
     document.body.style.backgroundColor = background;
+    themeMeta.setAttribute('content', background);
 
     return () => {
       document.documentElement.style.backgroundColor = '';
       document.body.style.backgroundColor = '';
+      themeMeta.setAttribute('content', '#f5f5f3');
     };
   }, [isDarkSurfaceRoute]);
 

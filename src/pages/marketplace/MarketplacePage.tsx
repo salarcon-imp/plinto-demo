@@ -7,10 +7,10 @@ import { getArtistById } from '../../utils/plinto';
 import { getVisualStyle } from '../../utils/visuals';
 
 const MARKET_FILTERS = [
-  { id: 'minimalism', label: 'Minimalism' },
-  { id: 'geometric', label: 'Cubism' },
-  { id: 'abstract', label: 'Abstract' },
-  { id: 'figurative', label: 'Pop Art' },
+  { id: 'abstracto',    label: 'Abstracto'   },
+  { id: 'figurativo',   label: 'Figurativo'  },
+  { id: 'geometrico',   label: 'Geométrico'  },
+  { id: 'coleccionable',label: 'Coleccionable'},
 ] as const;
 
 function formatAvailability(value: string) {
@@ -46,9 +46,11 @@ export function MarketplacePage() {
       <div className="app-marketplace-v2__top">
         <header className="app-marketplace-v2__header">
           <img alt="Plinto" className="app-marketplace-v2__wordmark app-marketplace-v2__wordmark--light" src={brandAssets.OfficialLogo} />
-          <button aria-label="Open profile" className="app-marketplace-v2__profile" type="button">
-            <UserCircle2 size={24} strokeWidth={1.9} />
-          </button>
+          <div className="app-marketplace-v2__header-right">
+            <button aria-label="Open profile" className="app-marketplace-v2__profile" type="button">
+              <UserCircle2 size={24} strokeWidth={1.9} />
+            </button>
+          </div>
         </header>
 
         <div className="app-marketplace-v2__filters" role="tablist" aria-label="Marketplace filters">

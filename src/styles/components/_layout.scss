@@ -77,6 +77,9 @@
 
   .app-shell__device {
     width: min(100%, 430px);
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
   }
 
   .mobile-frame {

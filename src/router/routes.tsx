@@ -9,6 +9,7 @@ import { OnboardingPage } from '../pages/onboarding/OnboardingPage';
 import { ScanPiecePage } from '../pages/scan-piece/ScanPiecePage';
 import { WorkFoundPage } from '../pages/work-found/WorkFoundPage';
 import { InvitationPage } from '../pages/invitation/InvitationPage';
+import { RegisterPage } from '../pages/register/RegisterPage';
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'invitation',
         element: <InvitationPage />
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />,
       },
       {
         path: 'onboarding',
