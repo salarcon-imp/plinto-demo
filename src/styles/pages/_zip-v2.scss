@@ -2548,12 +2548,19 @@ width: calc(100% - 18px);
   align-items: center;
 }
 
-/* bg and blur always fill the full viewport */
+/* bg fills viewport behind everything */
 .vf-scene__bg,
 .vf-scene__blur {
   position: absolute;
   inset: 0;
+}
+
+.vf-scene__bg {
   z-index: 0;
+}
+
+.vf-scene__blur {
+  z-index: 1; /* above bg, below frame (z:2) */
 }
 
 .vf-scene__bg {
@@ -2569,6 +2576,17 @@ width: calc(100% - 18px);
 
 .vf-scene--live .vf-scene__blur {
   display: none;
+}
+
+/* Explicit blur overlay used in verifying + badge-open states */
+.vf-live-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(245, 245, 243, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 /* ── Centered frame — all interactive UI lives here ── */

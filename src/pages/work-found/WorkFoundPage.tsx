@@ -48,7 +48,7 @@ export function WorkFoundPage() {
     timerRef.current = window.setTimeout(() => setVerifyState('badge'), 8000);
   };
 
-  // ── "Found" ──────────────────────────────────────────────────────────────
+  // ── "Found" — sheet over blurred marketplace ──────────────────────────────
   if (verifyState === 'found') {
     return (
       <div className="vf-scene">
@@ -76,11 +76,12 @@ export function WorkFoundPage() {
     );
   }
 
-  // ── "Verifying" — scan icon + X above toast ───────────────────────────────
+  // ── "Verifying" — BLUR + scan icon + X + toast ────────────────────────────
   if (verifyState === 'verifying') {
     return (
       <div className="vf-scene vf-scene--live">
         <div className="vf-scene__bg" aria-hidden="true"><MarketplaceBackground /></div>
+        <div className="vf-live-blur" aria-hidden="true" />
         <div className="vf-frame">
           <div className="vf-bottom-group">
             <div className="vf-topbar">
@@ -104,43 +105,57 @@ export function WorkFoundPage() {
     );
   }
 
-  // ── "Badge" — badge IN header between logo and profile ───────────────────
-  if (verifyState === 'badge' || verifyState === 'badge-open') {
-    const isOpen = verifyState === 'badge-open';
+  // ── "Badge" — NO blur, marketplace nítido, badge en header ───────────────
+  if (verifyState === 'badge') {
     return (
       <div className="vf-scene vf-scene--live">
         <div className="vf-scene__bg" aria-hidden="true">
           <MarketplaceBackground
             verifyBadge="verificando"
-            onBadgeClick={() => setVerifyState(isOpen ? 'badge' : 'badge-open')}
+            onBadgeClick={() => setVerifyState('badge-open')}
           />
         </div>
+        {/* NO blur div here — marketplace visible nítido */}
+        <div className="vf-frame" />
+      </div>
+    );
+  }
+
+  // ── "Badge-open" — BLUR + scan icon + X + "Seguimos en eso" toast ─────────
+  if (verifyState === 'badge-open') {
+    return (
+      <div className="vf-scene vf-scene--live">
+        <div className="vf-scene__bg" aria-hidden="true">
+          <MarketplaceBackground
+            verifyBadge="verificando"
+            onBadgeClick={() => setVerifyState('badge')}
+          />
+        </div>
+        <div className="vf-live-blur" aria-hidden="true" />
         <div className="vf-frame">
-          {isOpen && (
-            <div className="vf-bottom-group">
-              <div className="vf-topbar">
-                <div className="vf-scan-pill">
-                  <img alt="Plinto" src={BrandMark} className="vf-scan-pill__img" />
-                </div>
-                <button className="vf-market-dismiss" onClick={() => setVerifyState('badge')} type="button" aria-label="Cerrar">
-                  <X size={18} strokeWidth={1.8} />
-                </button>
+          <div className="vf-bottom-group">
+            <div className="vf-topbar">
+              <div className="vf-scan-pill">
+                <img alt="Plinto" src={BrandMark} className="vf-scan-pill__img" />
               </div>
-              <div className="vf-toast">
-                <div className="vf-toast__row">
-                  <p className="vf-toast__title">Seguimos en eso.</p>
-                  <Loader2 className="vf-toast__spinner" size={22} strokeWidth={1.6} />
-                </div>
-                <p className="vf-toast__sub">Ya casi. Puede tardar un momento más.</p>
-              </div>
+              <button className="vf-market-dismiss" onClick={() => setVerifyState('badge')} type="button" aria-label="Cerrar">
+                <X size={18} strokeWidth={1.8} />
+              </button>
             </div>
-          )}
+            <div className="vf-toast">
+              <div className="vf-toast__row">
+                <p className="vf-toast__title">Seguimos en eso.</p>
+                <Loader2 className="vf-toast__spinner" size={22} strokeWidth={1.6} />
+              </div>
+              <p className="vf-toast__sub">Ya casi. Puede tardar un momento más.</p>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
-  // ── "Done" — IDENTIFICADA ─────────────────────────────────────────────────
+  // ── "Done" — IDENTIFICADA sheet over blurred marketplace ─────────────────
   return (
     <div className="vf-scene">
       <div className="vf-scene__bg" aria-hidden="true">
